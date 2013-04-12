@@ -1,5 +1,7 @@
 package org.holmes.evaluator;
 
+import java.util.regex.Pattern;
+
 import org.holmes.Evaluator;
 import org.holmes.Joint;
 
@@ -15,6 +17,20 @@ public class StringEvaluator extends ObjectEvaluator<String> {
 	}
 
 	/**
+	 * Ensures that the target does not contains text.
+	 * 
+	 * @return an instance of {@link Joint} class
+	 */
+	public Joint isEmpty() {
+		return setEvaluation(new Evaluation<String>() {
+
+			public boolean evaluate(String target) {
+				return target == null || target.trim().isEmpty();
+			}
+		}).getJoint();
+	}
+
+	/**
 	 * Ensures that the target contains text.
 	 * 
 	 * @return an instance of {@link Joint} class
@@ -24,6 +40,23 @@ public class StringEvaluator extends ObjectEvaluator<String> {
 
 			public boolean evaluate(String target) {
 				return target != null && !target.trim().isEmpty();
+			}
+		}).getJoint();
+	}
+
+	/**
+	 * Ensures that the target matches the pattern.
+	 * 
+	 * @param pattern
+	 *            the compiled regex to validate the target
+	 * @return an instance of {@link Joint} class
+	 */
+	public Joint matches(final Pattern pattern) {
+		return setEvaluation(new Evaluation<String>() {
+
+			public boolean evaluate(String target) {
+				return pattern != null && target != null
+						&& pattern.matcher(target).matches();
 			}
 		}).getJoint();
 	}
