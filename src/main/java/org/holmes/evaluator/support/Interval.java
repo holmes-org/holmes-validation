@@ -95,9 +95,9 @@ public final class Interval<T extends Comparable<T>> {
 	private boolean analyzeRightBoundary(T element) {
 
 		if (rightOpen) {
-			return element.compareTo(rightBoundary) > 0;
+			return element.compareTo(rightBoundary) < 0;
 		}
 
-		return element.compareTo(rightBoundary) >= 0;
+		return element.compareTo(rightBoundary) <= 0;
 	}
 }

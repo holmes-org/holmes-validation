@@ -265,45 +265,119 @@ public class NumberEvaluatorTest {
 			assertFalse(evaluator.evaluate());
 		}
 	}
-	
+
 	@Test
 	public void testSuccessfulBelongsToIntervalEval() {
-		//TODO: test this method
+
+		evaluator = new NumberEvaluator(3);
+
+		evaluator.belongsToInterval(3, 3);
+		assertTrue(evaluator.evaluate());
+
+		evaluator.belongsToInterval(0, 3);
+		assertTrue(evaluator.evaluate());
+
+		evaluator.belongsToInterval(3, 5);
+		assertTrue(evaluator.evaluate());
+
+		evaluator.belongsToInterval(0, 5);
+		assertTrue(evaluator.evaluate());
 	}
-	
+
 	@Test
 	public void testUnsuccessfulBelongsToIntervalEval() {
-		//TODO: test this method
+
+		evaluator = new NumberEvaluator(3);
+
+		evaluator.belongsToInterval(-3, -3);
+		assertFalse(evaluator.evaluate());
+
+		evaluator.belongsToInterval(0, 1);
+		assertFalse(evaluator.evaluate());
+
+		evaluator.belongsToInterval(4, 10);
+		assertFalse(evaluator.evaluate());
 	}
-	
+
 	@Test
 	public void testSuccessfulBelongsToLeftOpenIntervalEval() {
-		//TODO: test this method
+		
+		evaluator = new NumberEvaluator(3);
+
+		evaluator.belongsToLeftOpenInterval(0, 3);
+		assertTrue(evaluator.evaluate());
+
+		evaluator.belongsToLeftOpenInterval(0, 5);
+		assertTrue(evaluator.evaluate());
 	}
-	
+
 	@Test
 	public void testUnsuccessfulBelongsToLeftOpenIntervalEval() {
-		//TODO: test this method
+		
+		evaluator = new NumberEvaluator(3);
+
+		evaluator.belongsToLeftOpenInterval(4, 8);
+		assertFalse(evaluator.evaluate());
+
+		evaluator.belongsToLeftOpenInterval(3, 5);
+		assertFalse(evaluator.evaluate());
+		
+		evaluator.belongsToLeftOpenInterval(0, 2);
+		assertFalse(evaluator.evaluate());
 	}
-	
+
 	@Test
 	public void testSuccessfulBelongsToRightOpenIntervalEval() {
-		//TODO: test this method
+		
+		evaluator = new NumberEvaluator(3);
+
+		evaluator.belongsToRightOpenInterval(3, 8);
+		assertTrue(evaluator.evaluate());
+
+		evaluator.belongsToRightOpenInterval(0, 5);
+		assertTrue(evaluator.evaluate());
 	}
-	
+
 	@Test
 	public void testUnsuccessfulBelongsToRightOpenIntervalEval() {
+
+		evaluator = new NumberEvaluator(3);
+
+		evaluator.belongsToRightOpenInterval(4, 8);
+		assertFalse(evaluator.evaluate());
+
+		evaluator.belongsToRightOpenInterval(0, 3);
+		assertFalse(evaluator.evaluate());
 		
+		evaluator.belongsToRightOpenInterval(0, 2);
+		assertFalse(evaluator.evaluate());
 	}
-	
+
 	@Test
 	public void testSuccessfulBelongsToOpenIntervalEval() {
-		
+
+		evaluator = new NumberEvaluator(3);
+
+		evaluator.belongsToOpenInterval(0, 5);
+		assertTrue(evaluator.evaluate());
 	}
-	
+
 	@Test
 	public void testUnsuccessfulBelongsToOpenIntervalEval() {
+
+		evaluator = new NumberEvaluator(3);
+
+		evaluator.belongsToOpenInterval(4, 8);
+		assertFalse(evaluator.evaluate());
+
+		evaluator.belongsToOpenInterval(3, 3);
+		assertFalse(evaluator.evaluate());
 		
+		evaluator.belongsToOpenInterval(0, 3);
+		assertFalse(evaluator.evaluate());
+		
+		evaluator.belongsToOpenInterval(3, 8);
+		assertFalse(evaluator.evaluate());
 	}
 
 	private Number[] randomNumbers(int min, int max, boolean minIncluded, boolean maxIncluded) {
@@ -406,5 +480,4 @@ public class NumberEvaluatorTest {
 
 		return (min + Math.random() * max) * sign;
 	}
-
 }
