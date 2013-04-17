@@ -3,7 +3,9 @@ package org.holmes.evaluator;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 
+import org.holmes.Evaluator;
 import org.holmes.Joint;
+import org.holmes.evaluator.support.Interval;
 
 /**
  * An {@link Evaluator} for the {@link Number} supertype.
@@ -52,7 +54,7 @@ public class NumberEvaluator extends ObjectEvaluator<Number> {
 	 *            the number to compare the target to.
 	 * @return an instance of {@link Joint} class
 	 */
-	public Joint isGreterThanOrEqualTo(final Number number) {
+	public Joint isGreaterThanOrEqualTo(final Number number) {
 
 		return setEvaluation(new Evaluation<Number>() {
 
@@ -140,6 +142,23 @@ public class NumberEvaluator extends ObjectEvaluator<Number> {
 	}
 
 	/**
+	 * Ensures that the target is a negative number or zero.
+	 * 
+	 * @return an instance of {@link Joint} class
+	 */
+	public Joint isNonPositive() {
+
+		return setEvaluation(new Evaluation<Number>() {
+
+			public boolean evaluate(Number target) {
+
+				return target != null && toBigDecimal(target).signum() <= ZERO;
+			}
+
+		}).getJoint();
+	}
+
+	/**
 	 * Ensures that the target is a positive number or zero.
 	 * 
 	 * @return an instance of {@link Joint} class
@@ -205,6 +224,98 @@ public class NumberEvaluator extends ObjectEvaluator<Number> {
 			public boolean evaluate(Number target) {
 
 				return target != null && isMultiple(toBigInteger(target), toBigInteger(number));
+			}
+
+		}).getJoint();
+	}
+
+	/**
+	 * Ensures that the target belongs to the closed interval [leftBoundary,
+	 * rightBoundary].
+	 * 
+	 * @param leftBoundary
+	 *            the left boundary, inclusive.
+	 * @param rightBoundary
+	 *            the right boundary, inclusive.
+	 * @return an instance of {@link Joint} class
+	 */
+	public Joint belongsToInterval(final Number leftBoundary, final Number rightBoundary) {
+
+		return setEvaluation(new Evaluation<Number>() {
+
+			public boolean evaluate(Number target) {
+
+				return Interval.closedInterval(toBigDecimal(leftBoundary), toBigDecimal(rightBoundary)).contains(
+						toBigDecimal(target));
+			}
+
+		}).getJoint();
+	}
+
+	/**
+	 * Ensures that the target belongs to the left-open interval (leftBoundary,
+	 * rightBoundary].
+	 * 
+	 * @param leftBoundary
+	 *            the left boundary, exclusive.
+	 * @param rightBoundary
+	 *            the right boundary, inclusive.
+	 * @return an instance of {@link Joint} class
+	 */
+	public Joint belongsToLeftOpenInterval(final Number leftBoundary, final Number rightBoundary) {
+
+		return setEvaluation(new Evaluation<Number>() {
+
+			public boolean evaluate(Number target) {
+
+				return Interval.leftOpenInterval(toBigDecimal(leftBoundary), toBigDecimal(rightBoundary)).contains(
+						toBigDecimal(target));
+			}
+
+		}).getJoint();
+	}
+
+	/**
+	 * Ensures that the target belongs to the right-open interval [leftBoundary,
+	 * rightBoundary).
+	 * 
+	 * @param leftBoundary
+	 *            the left boundary, inclusive.
+	 * @param rightBoundary
+	 *            the right boundary, exclusive.
+	 * @return an instance of {@link Joint} class
+	 */
+	public Joint belongsToRightOpenInterval(final Number leftBoundary, final Number rightBoundary) {
+
+		return setEvaluation(new Evaluation<Number>() {
+
+			public boolean evaluate(Number target) {
+
+				return Interval.rightOpenInterval(toBigDecimal(leftBoundary), toBigDecimal(rightBoundary)).contains(
+						toBigDecimal(target));
+			}
+
+		}).getJoint();
+	}
+
+	/**
+	 * Ensures that the target belongs to the open interval (leftBoundary,
+	 * rightBoundary).
+	 * 
+	 * @param leftBoundary
+	 *            the left boundary, exclusive.
+	 * @param rightBoundary
+	 *            the right boundary, exclusive.
+	 * @return an instance of {@link Joint} class
+	 */
+	public Joint belongsToOpenInterval(final Number leftBoundary, final Number rightBoundary) {
+
+		return setEvaluation(new Evaluation<Number>() {
+
+			public boolean evaluate(Number target) {
+
+				return Interval.openInterval(toBigDecimal(leftBoundary), toBigDecimal(rightBoundary)).contains(
+						toBigDecimal(target));
 			}
 
 		}).getJoint();

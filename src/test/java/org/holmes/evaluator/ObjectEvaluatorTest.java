@@ -42,34 +42,34 @@ public class ObjectEvaluatorTest {
 	}
 	
 	@Test
-	public void testSuccessfulIsEqualsToEval() {
+	public void testSuccessfulIsEqualToEval() {
 
 		evaluator = new ObjectEvaluator<Object>("Hello");
-		evaluator.isEqualsTo("Hello");
+		evaluator.isEqualTo("Hello");
 		assertTrue(evaluator.evaluate());
 	}
 	
 	@Test
-	public void testUnsuccessfulIsEqualsToEval() {
+	public void testUnsuccessfulIsEqualToEval() {
 
 		evaluator = new ObjectEvaluator<Object>("Hello");
-		evaluator.isEqualsTo("World");
+		evaluator.isEqualTo("World");
 		assertFalse(evaluator.evaluate());
 	}
 	
 	@Test
-	public void testSuccessfulIsNotEqualsToEval() {
+	public void testSuccessfulIsNotEqualToEval() {
 
 		evaluator = new ObjectEvaluator<Object>("Hello");
-		evaluator.isNotEqualsTo("World");
+		evaluator.isNotEqualTo("World");
 		assertTrue(evaluator.evaluate());
 	}
 	
 	@Test
-	public void testUnsuccessfulIsNotEqualsToEval() {
+	public void testUnsuccessfulIsNotEqualToEval() {
 
 		evaluator = new ObjectEvaluator<Object>("Hello");
-		evaluator.isNotEqualsTo("Hello");
+		evaluator.isNotEqualTo("Hello");
 		assertFalse(evaluator.evaluate());
 	}
 

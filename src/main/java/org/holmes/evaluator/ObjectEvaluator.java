@@ -57,7 +57,7 @@ public class ObjectEvaluator<T> extends AbstractEvaluator<T> {
 	 *            the object to compare the target to
 	 * @return an instance of {@link Joint} class
 	 */
-	public Joint isEqualsTo(final T other) {
+	public Joint isEqualTo(final T other) {
 
 		return setEvaluation(new Evaluation<T>() {
 
@@ -76,7 +76,7 @@ public class ObjectEvaluator<T> extends AbstractEvaluator<T> {
 	 *            the object to compare the target to
 	 * @return an instance of {@link Joint} class
 	 */
-	public Joint isNotEqualsTo(final T other) {
+	public Joint isNotEqualTo(final T other) {
 
 		return setEvaluation(new Evaluation<T>() {
 
