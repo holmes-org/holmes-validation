@@ -7,6 +7,7 @@ import java.util.List;
 
 import org.holmes.collector.ResultCollector;
 import org.holmes.evaluator.BooleanEvaluator;
+import org.holmes.evaluator.DateEvaluator;
 import org.holmes.evaluator.NumberEvaluator;
 import org.holmes.evaluator.ObjectEvaluator;
 import org.holmes.exception.RuleViolationException;
@@ -108,10 +109,9 @@ public class HolmesEngine {
 	 *            the target
 	 * @return an appropriated {@link Evaluator} for the given target type.
 	 */
-	public Evaluator<?> ensureThat(final Date date) {
+	public DateEvaluator ensureThat(final Date date) {
 
-		// TODO: implement DateEvaluator class
-		return null;
+		return configure(new DateEvaluator(date));
 	}
 	
 	/**

@@ -1,6 +1,9 @@
 package org.holmes;
 
+import java.util.Date;
+
 import org.holmes.evaluator.BooleanEvaluator;
+import org.holmes.evaluator.DateEvaluator;
 import org.holmes.evaluator.NumberEvaluator;
 import org.holmes.evaluator.ObjectEvaluator;
 import org.holmes.statement.SimpleStatement;
@@ -89,6 +92,30 @@ public class Joint {
 	/**
 	 * Adds a disjunctive statement to the {@link Rule}.
 	 * 
+	 * @param number
+	 *            the target of the disjunctive statement.
+	 * @return an appropriated {@link Evaluator} for the given target type.
+	 */
+	public DateEvaluator or(Date date) {
+
+		return or(new DateEvaluator(date));
+	}
+
+	/**
+	 * Adds a conjunctive statement to the {@link Rule}.
+	 * 
+	 * @param number
+	 *            the target of the conjunctive statement.
+	 * @return an appropriated {@link Evaluator} for the given target type.
+	 */
+	public DateEvaluator and(Date date) {
+
+		return and(new DateEvaluator(date));
+	}
+	
+	/**
+	 * Adds a disjunctive statement to the {@link Rule}.
+	 * 
 	 * @param object
 	 *            the target of the disjunctive statement.
 	 * @return an appropriated {@link Evaluator} for the given target type.
@@ -112,12 +139,14 @@ public class Joint {
 
 	private <E extends Evaluator<?>> E or(E evaluator) {
 
+		evaluator.setJoint(this);
 		rule.addOrStatement(new SimpleStatement(evaluator));
 		return evaluator;
 	}
 
 	private <E extends Evaluator<?>> E and(E evaluator) {
 
+		evaluator.setJoint(this);
 		rule.addAndStatement(new SimpleStatement(evaluator));
 		return evaluator;
 	}

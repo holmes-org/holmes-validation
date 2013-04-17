@@ -36,4 +36,10 @@ public class ValidationException extends RuntimeException {
 
 		return Collections.unmodifiableList(violationsDescriptors);
 	}
+	
+	@Override
+	public String toString() {
+		
+		return violationsDescriptors.toString();
+	}
 }

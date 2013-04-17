@@ -4,7 +4,6 @@ package org.holmes.evaluator.support;
  * Represents a interval, between left boundary and right boundary.
  * 
  * @author diegossilveira
- * 
  */
 public final class Interval<T extends Comparable<T>> {
 
