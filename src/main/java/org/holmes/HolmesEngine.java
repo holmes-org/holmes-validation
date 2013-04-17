@@ -5,10 +5,12 @@ import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
+import org.holmes.collector.ResultCollector;
 import org.holmes.evaluator.BooleanEvaluator;
 import org.holmes.evaluator.NumberEvaluator;
 import org.holmes.evaluator.ObjectEvaluator;
 import org.holmes.exception.RuleViolationException;
+import org.holmes.exception.ValidationException;
 
 /**
  * The main class of the framework.
@@ -19,7 +21,6 @@ public class HolmesEngine {
 
 	private final List<Rule> rules;
 
-	@SuppressWarnings("unused")
 	private final OperationMode mode;
 
 	private HolmesEngine(OperationMode mode) {
@@ -125,11 +126,15 @@ public class HolmesEngine {
 		return configure(new ObjectEvaluator<Object>(object));
 	}
 
-	public void run() {
+	public void run() throws ValidationException {
 
+		ResultCollector collector = mode.getResultCollector();
+		
 		for (Rule rule : rules) {
-			evaluateRule(rule);
+			evaluateRule(rule, collector);
 		}
+		
+		collector.finish();
 	}
 
 	private <E extends Evaluator<?>> E configure(E evaluator) {
@@ -141,7 +146,7 @@ public class HolmesEngine {
 		return evaluator;
 	}
 
-	private void evaluateRule(Rule rule) {
+	private void evaluateRule(Rule rule, ResultCollector collector) {
 
 		try {
 
@@ -149,8 +154,7 @@ public class HolmesEngine {
 
 		} catch (RuleViolationException e) {
 
-			e.getViolationDescriptor();
-			// TODO: collect exception descriptor
+			collector.onRuleViolation(e);
 		}
 	}
 }

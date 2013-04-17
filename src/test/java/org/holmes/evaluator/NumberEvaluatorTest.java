@@ -265,6 +265,46 @@ public class NumberEvaluatorTest {
 			assertFalse(evaluator.evaluate());
 		}
 	}
+	
+	@Test
+	public void testSuccessfulBelongsToIntervalEval() {
+		//TODO: test this method
+	}
+	
+	@Test
+	public void testUnsuccessfulBelongsToIntervalEval() {
+		//TODO: test this method
+	}
+	
+	@Test
+	public void testSuccessfulBelongsToLeftOpenIntervalEval() {
+		//TODO: test this method
+	}
+	
+	@Test
+	public void testUnsuccessfulBelongsToLeftOpenIntervalEval() {
+		//TODO: test this method
+	}
+	
+	@Test
+	public void testSuccessfulBelongsToRightOpenIntervalEval() {
+		//TODO: test this method
+	}
+	
+	@Test
+	public void testUnsuccessfulBelongsToRightOpenIntervalEval() {
+		
+	}
+	
+	@Test
+	public void testSuccessfulBelongsToOpenIntervalEval() {
+		
+	}
+	
+	@Test
+	public void testUnsuccessfulBelongsToOpenIntervalEval() {
+		
+	}
 
 	private Number[] randomNumbers(int min, int max, boolean minIncluded, boolean maxIncluded) {
 
