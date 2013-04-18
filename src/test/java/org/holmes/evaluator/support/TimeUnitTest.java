@@ -46,8 +46,7 @@ public class TimeUnitTest {
 	@Test
 	public void testSuccessfulMillis2YearsConversion() {
 		
-		assertEquals(1.0, TimeUnit.YEAR.fromMillis(31536000000l));
-		assertEquals(0.98, TimeUnit.YEAR.fromMillis(30905280000l));
+		assertEquals(1.0, TimeUnit.YEAR.fromMillis(31556928000l));
 	}
 	
 }
