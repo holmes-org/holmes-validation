@@ -10,6 +10,7 @@ import org.holmes.evaluator.BooleanEvaluator;
 import org.holmes.evaluator.DateEvaluator;
 import org.holmes.evaluator.NumberEvaluator;
 import org.holmes.evaluator.ObjectEvaluator;
+import org.holmes.evaluator.StringEvaluator;
 import org.holmes.exception.RuleViolationException;
 import org.holmes.exception.ValidationException;
 
@@ -71,10 +72,9 @@ public class HolmesEngine {
 	 *            the target
 	 * @return an appropriated {@link Evaluator} for the given target type.
 	 */
-	public Evaluator<?> ensureThat(final String string) {
+	public StringEvaluator ensureThat(final String string) {
 
-		// TODO: implement StringEvaluator class
-		return null;
+		return configure(new StringEvaluator(string));
 	}
 
 	/**
@@ -113,7 +113,7 @@ public class HolmesEngine {
 
 		return configure(new DateEvaluator(date));
 	}
-	
+
 	/**
 	 * Creates a new {@link Rule} for a {@link Object} target type.
 	 * 
@@ -129,11 +129,11 @@ public class HolmesEngine {
 	public void run() throws ValidationException {
 
 		ResultCollector collector = mode.getResultCollector();
-		
+
 		for (Rule rule : rules) {
 			evaluateRule(rule, collector);
 		}
-		
+
 		collector.finish();
 	}
 

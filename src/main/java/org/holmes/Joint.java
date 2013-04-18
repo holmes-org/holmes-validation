@@ -6,6 +6,7 @@ import org.holmes.evaluator.BooleanEvaluator;
 import org.holmes.evaluator.DateEvaluator;
 import org.holmes.evaluator.NumberEvaluator;
 import org.holmes.evaluator.ObjectEvaluator;
+import org.holmes.evaluator.StringEvaluator;
 import org.holmes.statement.SimpleStatement;
 
 /**
@@ -59,8 +60,29 @@ public class Joint {
 		return and(new BooleanEvaluator(bool));
 	}
 
-	// TODO: add public StringEvaluator or(String string)
-	// TODO: add public StringEvaluator and(String string)
+	/**
+	 * Adds a disjunctive statement to the {@link Rule}.
+	 * 
+	 * @param string
+	 *            the target of the disjunctive statement.
+	 * @return an appropriated {@link Evaluator} for the given target type.
+	 */
+	public StringEvaluator or(String string) {
+
+		return or(new StringEvaluator(string));
+	}
+
+	/**
+	 * Adds a conjunctive statement to the {@link Rule}.
+	 * 
+	 * @param string
+	 *            the target of the conjunctive statement.
+	 * @return an appropriated {@link Evaluator} for the given target type.
+	 */
+	public StringEvaluator and(String string) {
+
+		return and(new StringEvaluator(string));
+	}
 
 	// TODO: add public CollectionEvaluator or(Collection collection)
 	// TODO: add public CollectionEvaluator and(Collection collection)
@@ -92,7 +114,7 @@ public class Joint {
 	/**
 	 * Adds a disjunctive statement to the {@link Rule}.
 	 * 
-	 * @param number
+	 * @param date
 	 *            the target of the disjunctive statement.
 	 * @return an appropriated {@link Evaluator} for the given target type.
 	 */
@@ -104,7 +126,7 @@ public class Joint {
 	/**
 	 * Adds a conjunctive statement to the {@link Rule}.
 	 * 
-	 * @param number
+	 * @param date
 	 *            the target of the conjunctive statement.
 	 * @return an appropriated {@link Evaluator} for the given target type.
 	 */
@@ -112,7 +134,7 @@ public class Joint {
 
 		return and(new DateEvaluator(date));
 	}
-	
+
 	/**
 	 * Adds a disjunctive statement to the {@link Rule}.
 	 * 
