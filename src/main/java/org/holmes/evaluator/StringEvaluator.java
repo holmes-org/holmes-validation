@@ -4,6 +4,7 @@ import java.util.regex.Pattern;
 
 import org.holmes.Evaluator;
 import org.holmes.Joint;
+import org.holmes.evaluator.support.FutureNumber;
 
 /**
  * An {@link Evaluator} for the {@link String} type.
@@ -62,10 +63,37 @@ public class StringEvaluator extends ObjectEvaluator<String> {
 		return setEvaluation(new Evaluation<String>() {
 
 			public boolean evaluate(String target) {
-				
-				return pattern != null && target != null && pattern.matcher(target).matches();
+
+				return pattern != null && target != null
+						&& pattern.matcher(target).matches();
 			}
-			
+
 		}).getJoint();
+	}
+
+	/**
+	 * Gets the {@link String} length.
+	 * 
+	 * @param string
+	 * @return
+	 */
+	public NumberEvaluator size() {
+
+		final FutureNumber futureNumber = new FutureNumber();
+		final NumberEvaluator evaluator = new NumberEvaluator(futureNumber);
+
+		setEvaluation(new Evaluation<String>() {
+
+			public boolean evaluate(String target) {
+				if (target == null) {
+					return false;
+				}
+				futureNumber.wrap(target.length());
+				return evaluator.evaluate();
+			}
+		});
+
+		evaluator.setJoint(getJoint());
+		return evaluator;
 	}
 }

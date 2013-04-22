@@ -3,11 +3,36 @@ package org.holmes.evaluator;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
+import java.util.regex.Pattern;
+
 import org.junit.Test;
 
 public class StringEvaluatorTest {
 
 	private StringEvaluator evaluator;
+
+	@Test
+	public void testSuccessfulEmptyEval() {
+		evaluator = new StringEvaluator("");
+		evaluator.isEmpty();
+		assertTrue(evaluator.evaluate());
+
+		evaluator = new StringEvaluator("     ");
+		evaluator.isEmpty();
+		assertTrue(evaluator.evaluate());
+
+		evaluator = new StringEvaluator(null);
+		evaluator.isEmpty();
+		assertTrue(evaluator.evaluate());
+	}
+
+	@Test
+	public void testUnsuccessfulEmptyEval() {
+
+		evaluator = new StringEvaluator("text");
+		evaluator.isEmpty();
+		assertFalse(evaluator.evaluate());
+	}
 
 	@Test
 	public void testSuccessfulNotEmptyEval() {
@@ -30,6 +55,72 @@ public class StringEvaluatorTest {
 
 		evaluator = new StringEvaluator(null);
 		evaluator.isNotEmpty();
+		assertFalse(evaluator.evaluate());
+	}
+
+	@Test
+	public void testSuccessfulMatchesEval() {
+
+		Pattern hexadecimalColor = Pattern
+				.compile("^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$");
+
+		evaluator = new StringEvaluator("#F2F2F2");
+		evaluator.matches(hexadecimalColor);
+		assertTrue(evaluator.evaluate());
+
+		evaluator = new StringEvaluator("#FFF");
+		evaluator.matches(hexadecimalColor);
+		assertTrue(evaluator.evaluate());
+	}
+
+	@Test
+	public void testUnsuccessfulMatchesEval() {
+
+		Pattern hexadecimalColor = Pattern
+				.compile("^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$");
+
+		evaluator = new StringEvaluator("  #F2F2F2  ");
+		evaluator.matches(hexadecimalColor);
+		assertFalse(evaluator.evaluate());
+
+		evaluator = new StringEvaluator("F2F2F2");
+		evaluator.matches(hexadecimalColor);
+		assertFalse(evaluator.evaluate());
+
+		evaluator = new StringEvaluator("black");
+		evaluator.matches(hexadecimalColor);
+		assertFalse(evaluator.evaluate());
+
+		evaluator = new StringEvaluator(null);
+		evaluator.matches(hexadecimalColor);
+		assertFalse(evaluator.evaluate());
+	}
+
+	@Test
+	public void testSuccessfulSizeEval() {
+
+		evaluator = new StringEvaluator("cinco");
+		evaluator.size().isOdd();
+		assertTrue(evaluator.evaluate());
+
+		evaluator = new StringEvaluator("cinco");
+		evaluator.size().isGreaterThan(4);
+		assertTrue(evaluator.evaluate());
+	}
+
+	@Test
+	public void testUnsuccessfulSizeEval() {
+
+		evaluator = new StringEvaluator("cinco");
+		evaluator.size().isEven();
+		assertFalse(evaluator.evaluate());
+
+		evaluator = new StringEvaluator("cinco");
+		evaluator.size().isLessThan(4);
+		assertFalse(evaluator.evaluate());
+
+		evaluator = new StringEvaluator(null);
+		evaluator.size().isEqualTo(3);
 		assertFalse(evaluator.evaluate());
 	}
 }
