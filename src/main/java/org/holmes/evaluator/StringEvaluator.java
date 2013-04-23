@@ -75,9 +75,9 @@ public class StringEvaluator extends ObjectEvaluator<String> {
 	 * Gets the {@link String} length.
 	 * 
 	 * @param string
-	 * @return
+	 * @return {@link NumberEvaluator}
 	 */
-	public NumberEvaluator size() {
+	public NumberEvaluator length() {
 
 		final FutureNumber futureNumber = new FutureNumber();
 		final NumberEvaluator evaluator = new NumberEvaluator(futureNumber);

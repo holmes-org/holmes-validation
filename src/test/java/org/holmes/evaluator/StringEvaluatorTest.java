@@ -100,11 +100,11 @@ public class StringEvaluatorTest {
 	public void testSuccessfulSizeEval() {
 
 		evaluator = new StringEvaluator("cinco");
-		evaluator.size().isOdd();
+		evaluator.length().isOdd();
 		assertTrue(evaluator.evaluate());
 
 		evaluator = new StringEvaluator("cinco");
-		evaluator.size().isGreaterThan(4);
+		evaluator.length().isGreaterThan(4);
 		assertTrue(evaluator.evaluate());
 	}
 
@@ -112,15 +112,15 @@ public class StringEvaluatorTest {
 	public void testUnsuccessfulSizeEval() {
 
 		evaluator = new StringEvaluator("cinco");
-		evaluator.size().isEven();
+		evaluator.length().isEven();
 		assertFalse(evaluator.evaluate());
 
 		evaluator = new StringEvaluator("cinco");
-		evaluator.size().isLessThan(4);
+		evaluator.length().isLessThan(4);
 		assertFalse(evaluator.evaluate());
 
 		evaluator = new StringEvaluator(null);
-		evaluator.size().isEqualTo(3);
+		evaluator.length().isEqualTo(3);
 		assertFalse(evaluator.evaluate());
 	}
 }
