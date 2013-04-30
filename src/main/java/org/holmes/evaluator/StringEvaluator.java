@@ -64,8 +64,7 @@ public class StringEvaluator extends ObjectEvaluator<String> {
 
 			public boolean evaluate(String target) {
 
-				return pattern != null && target != null
-						&& pattern.matcher(target).matches();
+				return pattern != null && target != null && pattern.matcher(target).matches();
 			}
 
 		}).getJoint();
