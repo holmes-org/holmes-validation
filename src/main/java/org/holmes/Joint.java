@@ -1,8 +1,10 @@
 package org.holmes;
 
+import java.util.Collection;
 import java.util.Date;
 
 import org.holmes.evaluator.BooleanEvaluator;
+import org.holmes.evaluator.CollectionEvaluator;
 import org.holmes.evaluator.DateEvaluator;
 import org.holmes.evaluator.NumberEvaluator;
 import org.holmes.evaluator.ObjectEvaluator;
@@ -84,8 +86,29 @@ public class Joint {
 		return and(new StringEvaluator(string));
 	}
 
-	// TODO: add public CollectionEvaluator or(Collection collection)
-	// TODO: add public CollectionEvaluator and(Collection collection)
+	/**
+	 * Adds a disjunctive statement to the {@link Rule}.
+	 * 
+	 * @param collection
+	 *            the target of the disjunctive statement.
+	 * @return an appropriated {@link Evaluator} for the given target type.
+	 */
+	public <E> CollectionEvaluator<E> or(Collection<E> collection) {
+
+		return or(new CollectionEvaluator<E>(collection));
+	}
+
+	/**
+	 * Adds a conjunctive statement to the {@link Rule}.
+	 * 
+	 * @param collection
+	 *            the target of the conjunctive statement.
+	 * @return an appropriated {@link Evaluator} for the given target type.
+	 */
+	public <E> CollectionEvaluator<E> and(Collection<E> collection) {
+
+		return and(new CollectionEvaluator<E>(collection));
+	}
 
 	/**
 	 * Adds a disjunctive statement to the {@link Rule}.

@@ -7,6 +7,7 @@ import java.util.List;
 
 import org.holmes.collector.ResultCollector;
 import org.holmes.evaluator.BooleanEvaluator;
+import org.holmes.evaluator.CollectionEvaluator;
 import org.holmes.evaluator.DateEvaluator;
 import org.holmes.evaluator.NumberEvaluator;
 import org.holmes.evaluator.ObjectEvaluator;
@@ -84,10 +85,9 @@ public class HolmesEngine {
 	 *            the target
 	 * @return an appropriated {@link Evaluator} for the given target type.
 	 */
-	public Evaluator<?> ensureThat(final Collection<?> collection) {
+	public <E> CollectionEvaluator<E> ensureThat(final Collection<E> collection) {
 
-		// TODO: implement CollectionEvaluator class
-		return null;
+		return configure(new CollectionEvaluator<E>(collection));
 	}
 
 	/**
