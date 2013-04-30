@@ -9,7 +9,36 @@
 	<packaging>jar</packaging>
 
 	<name>holmes</name>
+	<description>A Java DSL to write validations</description>
 	<url>https://github.com/diegossilveira/holmes</url>
+	
+	<licenses>
+		<license>
+			<name>MIT</name>
+			<url>https://github.com/diegossilveira/holmes/blob/master/LICENSE.txt</url>
+		</license>
+	</licenses>
+	
+	<scm>
+		<connection>scm:git:git://github.com/diegossilveira/holmes.git</connection>
+		<developerConnection>scm:git:git@github.com:diegossilveira/holmes.git</developerConnection>
+		<url>https://github.com/diegossilveira/holmes.git</url>
+	</scm>
+	
+	<developers>
+		<developer>
+			<id>diegossilveira</id>
+			<name>Diego Santos da Silveira</name>
+			<email>diegossilveira@gmail.com</email>
+			<timezone>-3</timezone>
+		</developer>
+		<developer>
+			<id>arthuralmeida</id>
+			<name>Arthur Almeida</name>
+			<email>arthurdardinho@gmail.com</email>
+			<timezone>-3</timezone>
+		</developer>
+	</developers>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
