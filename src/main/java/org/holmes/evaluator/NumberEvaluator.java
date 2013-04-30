@@ -26,6 +26,46 @@ public class NumberEvaluator extends ObjectEvaluator<Number> {
 
 		super(target);
 	}
+	
+	/**
+	 * Ensures that the target value is equal to (==) the argument number.
+	 * 
+	 * @param number
+	 *            the number to compare the target to.
+	 * @return an instance of {@link Joint} class
+	 */
+	@Override
+	public Joint isEqualTo(final Number number) {
+
+		return setEvaluation(new Evaluation<Number>() {
+
+			public boolean evaluate(Number target) {
+
+				return target != null && toBigDecimal(target).compareTo(toBigDecimal(number)) == ZERO;
+			}
+
+		}).getJoint();
+	}
+	
+	/**
+	 * Ensures that the target value is equal to (==) the argument number.
+	 * 
+	 * @param number
+	 *            the number to compare the target to.
+	 * @return an instance of {@link Joint} class
+	 */
+	@Override
+	public Joint isNotEqualTo(final Number number) {
+
+		return setEvaluation(new Evaluation<Number>() {
+
+			public boolean evaluate(Number target) {
+
+				return target != null && toBigDecimal(target).compareTo(toBigDecimal(number)) != ZERO;
+			}
+
+		}).getJoint();
+	}
 
 	/**
 	 * Ensures that the target is greater than (>) the argument number.
