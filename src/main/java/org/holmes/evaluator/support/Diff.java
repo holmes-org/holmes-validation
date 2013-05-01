@@ -173,7 +173,8 @@ public class Diff {
 
 		if (fromDate == null && toDate == null) {
 
-			throw new IllegalArgumentException("either beginning date or ending date must be set.");
+			throw new IllegalArgumentException(
+					"either beginning date or ending date must be set.");
 		}
 
 		if (timeUnit == null) {

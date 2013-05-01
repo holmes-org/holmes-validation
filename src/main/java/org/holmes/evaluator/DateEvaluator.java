@@ -3,9 +3,9 @@ package org.holmes.evaluator;
 import java.util.Date;
 
 import org.holmes.Evaluator;
+import org.holmes.Joint;
 import org.holmes.evaluator.support.Diff;
 import org.holmes.evaluator.support.FutureNumber;
-import org.holmes.Joint;
 
 /**
  * An {@link Evaluator} for the {@link Date} type.
@@ -23,7 +23,7 @@ public class DateEvaluator extends ObjectEvaluator<Date> {
 	 * 
 	 * @param diff
 	 *            The diff configuration.
-	 * @return
+	 * @return {@link NumberEvaluator}
 	 */
 	public NumberEvaluator applying(final Diff diff) {
 
@@ -33,7 +33,7 @@ public class DateEvaluator extends ObjectEvaluator<Date> {
 		setEvaluation(new Evaluation<Date>() {
 
 			public boolean evaluate(Date target) {
-				
+
 				diff.setTarget(target);
 				futureNumber.wrap(diff.calculate());
 
@@ -65,6 +65,23 @@ public class DateEvaluator extends ObjectEvaluator<Date> {
 	}
 
 	/**
+	 * Ensures that the target is after than or equal to the argument date.
+	 * 
+	 * @param date
+	 *            the date to compare the target to
+	 * @return an instance of {@link Joint} class
+	 */
+	public Joint isAfterThanOrEqualTo(final Date date) {
+		return setEvaluation(new Evaluation<Date>() {
+
+			public boolean evaluate(Date target) {
+				return target != null
+						&& (target.after(date) || target.equals(date));
+			}
+		}).getJoint();
+	}
+
+	/**
 	 * Ensures that the target is before than the argument date.
 	 * 
 	 * @param date
@@ -80,6 +97,23 @@ public class DateEvaluator extends ObjectEvaluator<Date> {
 				return target != null && target.before(date);
 			}
 
+		}).getJoint();
+	}
+
+	/**
+	 * Ensures that the target is before than or equal to the argument date.
+	 * 
+	 * @param date
+	 *            the date to compare the target to
+	 * @return an instance of {@link Joint} class
+	 */
+	public Joint isBeforeThanOrEqualTo(final Date date) {
+		return setEvaluation(new Evaluation<Date>() {
+
+			public boolean evaluate(Date target) {
+				return target != null
+						&& (target.before(date) || target.equals(date));
+			}
 		}).getJoint();
 	}
 }
