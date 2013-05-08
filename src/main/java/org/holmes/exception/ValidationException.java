@@ -17,7 +17,7 @@ public class ValidationException extends RuntimeException {
 
 	public ValidationException(Collection<String> violationsDescriptors) {
 
-		this.violationsDescriptors = new ArrayList<>(violationsDescriptors);
+		this.violationsDescriptors = new ArrayList<String>(violationsDescriptors);
 	}
 
 	public List<String> getViolationsDescriptors() {
