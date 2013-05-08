@@ -15,7 +15,7 @@ public final class Interval<T extends Comparable<T>> {
 
 	private final boolean rightOpen;
 
-	public Interval(T leftBoundary, T rightBoundary, boolean leftOpen, boolean rightOpen) {
+	private Interval(T leftBoundary, T rightBoundary, boolean leftOpen, boolean rightOpen) {
 
 		this.leftBoundary = leftBoundary;
 		this.rightBoundary = rightBoundary;

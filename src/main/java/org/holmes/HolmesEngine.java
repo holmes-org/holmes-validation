@@ -24,12 +24,12 @@ public class HolmesEngine {
 
 	private final List<Rule> rules;
 
-	private final OperationMode mode;
+	private final ResultCollector collector;
 
-	private HolmesEngine(OperationMode mode) {
+	private HolmesEngine(ResultCollector collector) {
 
 		rules = new ArrayList<Rule>();
-		this.mode = mode;
+		this.collector = collector;
 	}
 
 	/**
@@ -39,7 +39,7 @@ public class HolmesEngine {
 	 */
 	public static HolmesEngine init() {
 
-		return new HolmesEngine(OperationMode.LAZY);
+		return new HolmesEngine(OperationMode.LAZY.getResultCollector());
 	}
 
 	/**
@@ -51,7 +51,18 @@ public class HolmesEngine {
 	 */
 	public static HolmesEngine init(OperationMode mode) {
 
-		return new HolmesEngine(mode);
+		return new HolmesEngine(mode.getResultCollector());
+	}
+
+	/**
+	 * Initializes the engine with the given {@link ResultCollector}.
+	 * 
+	 * @param collector
+	 * @return
+	 */
+	public static HolmesEngine init(ResultCollector collector) {
+
+		return new HolmesEngine(collector);
 	}
 
 	/**
@@ -126,15 +137,22 @@ public class HolmesEngine {
 		return configure(new ObjectEvaluator<Object>(object));
 	}
 
-	public void run() throws ValidationException {
+	/**
+	 * Runs all evaluation rules on the context.
+	 * 
+	 * @return
+	 * @throws ValidationException
+	 */
+	public ValidationResult run() throws ValidationException {
 
-		ResultCollector collector = mode.getResultCollector();
-
+		ValidationResult result = ValidationResult.init();
+		
 		for (Rule rule : rules) {
-			evaluateRule(rule, collector);
+			evaluateRule(rule, result);
 		}
 
-		collector.finish();
+		collector.finish(result);
+		return result;
 	}
 
 	private <E extends Evaluator<?>> E configure(E evaluator) {
@@ -146,7 +164,7 @@ public class HolmesEngine {
 		return evaluator;
 	}
 
-	private void evaluateRule(Rule rule, ResultCollector collector) {
+	private void evaluateRule(Rule rule, ValidationResult result) {
 
 		try {
 
@@ -154,7 +172,7 @@ public class HolmesEngine {
 
 		} catch (RuleViolationException e) {
 
-			collector.onRuleViolation(e);
+			collector.onRuleViolation(e, result);
 		}
 	}
 }

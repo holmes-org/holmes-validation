@@ -301,7 +301,7 @@ public class NumberEvaluatorTest {
 
 	@Test
 	public void testSuccessfulBelongsToLeftOpenIntervalEval() {
-		
+
 		evaluator = new NumberEvaluator(3);
 
 		evaluator.belongsToLeftOpenInterval(0, 3);
@@ -313,7 +313,7 @@ public class NumberEvaluatorTest {
 
 	@Test
 	public void testUnsuccessfulBelongsToLeftOpenIntervalEval() {
-		
+
 		evaluator = new NumberEvaluator(3);
 
 		evaluator.belongsToLeftOpenInterval(4, 8);
@@ -321,14 +321,14 @@ public class NumberEvaluatorTest {
 
 		evaluator.belongsToLeftOpenInterval(3, 5);
 		assertFalse(evaluator.evaluate());
-		
+
 		evaluator.belongsToLeftOpenInterval(0, 2);
 		assertFalse(evaluator.evaluate());
 	}
 
 	@Test
 	public void testSuccessfulBelongsToRightOpenIntervalEval() {
-		
+
 		evaluator = new NumberEvaluator(3);
 
 		evaluator.belongsToRightOpenInterval(3, 8);
@@ -348,7 +348,7 @@ public class NumberEvaluatorTest {
 
 		evaluator.belongsToRightOpenInterval(0, 3);
 		assertFalse(evaluator.evaluate());
-		
+
 		evaluator.belongsToRightOpenInterval(0, 2);
 		assertFalse(evaluator.evaluate());
 	}
@@ -372,12 +372,70 @@ public class NumberEvaluatorTest {
 
 		evaluator.belongsToOpenInterval(3, 3);
 		assertFalse(evaluator.evaluate());
-		
+
 		evaluator.belongsToOpenInterval(0, 3);
 		assertFalse(evaluator.evaluate());
-		
+
 		evaluator.belongsToOpenInterval(3, 8);
 		assertFalse(evaluator.evaluate());
+	}
+
+	@Test
+	public void testNullTargetEval() {
+
+		evaluator = new NumberEvaluator(null);
+
+		evaluator.belongsToInterval(10, 20);
+		assertFalse(evaluator.evaluate());
+
+		evaluator.belongsToLeftOpenInterval(10, 20);
+		assertFalse(evaluator.evaluate());
+
+		evaluator.belongsToOpenInterval(10, 20);
+		assertFalse(evaluator.evaluate());
+
+		evaluator.belongsToRightOpenInterval(10, 20);
+		assertFalse(evaluator.evaluate());
+
+		evaluator.isEqualTo(10);
+		assertFalse(evaluator.evaluate());
+
+		evaluator.isNotEqualTo(10);
+		assertFalse(evaluator.evaluate());
+
+		evaluator.isEven();
+		assertFalse(evaluator.evaluate());
+
+		evaluator.isOdd();
+		assertFalse(evaluator.evaluate());
+
+		evaluator.isGreaterThan(10);
+		assertFalse(evaluator.evaluate());
+
+		evaluator.isGreaterThanOrEqualTo(10);
+		assertFalse(evaluator.evaluate());
+
+		evaluator.isLessThan(10);
+		assertFalse(evaluator.evaluate());
+
+		evaluator.isLessThanOrEqualTo(10);
+		assertFalse(evaluator.evaluate());
+
+		evaluator.isMultipleOf(10);
+		assertFalse(evaluator.evaluate());
+
+		evaluator.isNegative();
+		assertFalse(evaluator.evaluate());
+
+		evaluator.isNonNegative();
+		assertFalse(evaluator.evaluate());
+
+		evaluator.isPositive();
+		assertFalse(evaluator.evaluate());
+
+		evaluator.isNonPositive();
+		assertFalse(evaluator.evaluate());
+
 	}
 
 	private Number[] randomNumbers(int min, int max, boolean minIncluded, boolean maxIncluded) {

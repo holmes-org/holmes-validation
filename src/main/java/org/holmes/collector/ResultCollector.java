@@ -1,5 +1,6 @@
 package org.holmes.collector;
 
+import org.holmes.ValidationResult;
 import org.holmes.exception.RuleViolationException;
 import org.holmes.exception.ValidationException;
 
@@ -10,7 +11,7 @@ import org.holmes.exception.ValidationException;
  */
 public interface ResultCollector {
 
-	void onRuleViolation(RuleViolationException e) throws ValidationException;
+	void onRuleViolation(RuleViolationException e, ValidationResult result) throws ValidationException;
 
-	void finish() throws ValidationException;
+	void finish(ValidationResult result) throws ValidationException;
 }
