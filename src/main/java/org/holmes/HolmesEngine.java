@@ -126,15 +126,15 @@ public class HolmesEngine {
 	}
 
 	/**
-	 * Creates a new {@link Rule} for a {@link Object} target type.
+	 * Creates a new {@link Rule} for a generic {@link Object} target type.
 	 * 
 	 * @param object
 	 *            the target
 	 * @return an appropriated {@link Evaluator} for the given target type.
 	 */
-	public ObjectEvaluator<Object> ensureThat(final Object object) {
+	public <T> ObjectEvaluator<T> ensureThat(final T object) {
 
-		return configure(new ObjectEvaluator<Object>(object));
+		return configure(new ObjectEvaluator<T>(object));
 	}
 
 	/**
