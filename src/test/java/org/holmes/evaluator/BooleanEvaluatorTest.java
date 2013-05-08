@@ -23,6 +23,10 @@ public class BooleanEvaluatorTest {
 		evaluator = new BooleanEvaluator(Boolean.FALSE);
 		evaluator.isTrue();
 		assertFalse(evaluator.evaluate());
+		
+		evaluator = new BooleanEvaluator(null);
+		evaluator.isTrue();
+		assertFalse(evaluator.evaluate());
 	}
 	
 	@Test
@@ -37,6 +41,10 @@ public class BooleanEvaluatorTest {
 	public void testUnsuccessfulFalseEval() {
 
 		evaluator = new BooleanEvaluator(Boolean.TRUE);
+		evaluator.isFalse();
+		assertFalse(evaluator.evaluate());
+		
+		evaluator = new BooleanEvaluator(null);
 		evaluator.isFalse();
 		assertFalse(evaluator.evaluate());
 	}

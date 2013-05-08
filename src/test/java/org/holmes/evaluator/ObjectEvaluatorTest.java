@@ -47,6 +47,10 @@ public class ObjectEvaluatorTest {
 		evaluator = new ObjectEvaluator<Object>("Hello");
 		evaluator.isEqualTo("Hello");
 		assertTrue(evaluator.evaluate());
+		
+		evaluator = new ObjectEvaluator<Object>(null);
+		evaluator.isEqualTo(null);
+		assertTrue(evaluator.evaluate());
 	}
 	
 	@Test
@@ -55,12 +59,20 @@ public class ObjectEvaluatorTest {
 		evaluator = new ObjectEvaluator<Object>("Hello");
 		evaluator.isEqualTo("World");
 		assertFalse(evaluator.evaluate());
+		
+		evaluator = new ObjectEvaluator<Object>(null);
+		evaluator.isEqualTo("World");
+		assertFalse(evaluator.evaluate());
 	}
 	
 	@Test
 	public void testSuccessfulIsNotEqualToEval() {
 
 		evaluator = new ObjectEvaluator<Object>("Hello");
+		evaluator.isNotEqualTo("World");
+		assertTrue(evaluator.evaluate());
+		
+		evaluator = new ObjectEvaluator<Object>(null);
 		evaluator.isNotEqualTo("World");
 		assertTrue(evaluator.evaluate());
 	}
