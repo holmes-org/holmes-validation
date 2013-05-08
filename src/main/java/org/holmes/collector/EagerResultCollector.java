@@ -1,6 +1,7 @@
 package org.holmes.collector;
 
 import org.holmes.OperationMode;
+import org.holmes.ValidationResult;
 import org.holmes.exception.RuleViolationException;
 import org.holmes.exception.ValidationException;
 
@@ -11,15 +12,13 @@ import org.holmes.exception.ValidationException;
  */
 public class EagerResultCollector implements ResultCollector {
 
-	public void onRuleViolation(RuleViolationException e) throws ValidationException {
+	public void onRuleViolation(RuleViolationException e, ValidationResult result) throws ValidationException {
 		
-		ValidationException validationException = new ValidationException();
-		validationException.addViolationDescriptor(e.getViolationDescriptor());
-		
-		throw validationException;
+		result.addViolationDescriptor(e.getViolationDescriptor());
+		throw new ValidationException(result.getViolationsDescriptors());
 	}
 
-	public void finish() throws ValidationException {
+	public void finish(ValidationResult result) throws ValidationException {
 		// Nothing to do
 	}
 }

@@ -1,7 +1,7 @@
 package org.holmes.exception;
 
 import java.util.ArrayList;
-import java.util.Collections;
+import java.util.Collection;
 import java.util.List;
 
 /**
@@ -15,31 +15,19 @@ public class ValidationException extends RuntimeException {
 
 	private final List<String> violationsDescriptors;
 
-	public ValidationException() {
+	public ValidationException(Collection<String> violationsDescriptors) {
 
-		violationsDescriptors = new ArrayList<String>();
-	}
-
-	public void addViolationDescriptor(String violationDescriptor) {
-
-		if (violationDescriptor != null) {
-			violationsDescriptors.add(violationDescriptor);
-		}
-	}
-
-	public boolean hasViolations() {
-
-		return !violationsDescriptors.isEmpty();
+		this.violationsDescriptors = new ArrayList<>(violationsDescriptors);
 	}
 
 	public List<String> getViolationsDescriptors() {
 
-		return Collections.unmodifiableList(violationsDescriptors);
+		return violationsDescriptors;
 	}
-	
+
 	@Override
 	public String toString() {
-		
+
 		return violationsDescriptors.toString();
 	}
 }
