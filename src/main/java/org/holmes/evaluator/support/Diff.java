@@ -166,11 +166,6 @@ public class Diff {
 
 	private void selfCheck() {
 
-		if (target == null) {
-
-			throw new IllegalArgumentException("target date must be set.");
-		}
-
 		if (fromDate == null && toDate == null) {
 
 			throw new IllegalArgumentException(

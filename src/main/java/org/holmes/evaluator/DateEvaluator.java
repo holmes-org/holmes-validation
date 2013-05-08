@@ -61,7 +61,7 @@ public class DateEvaluator extends ObjectEvaluator<Date> {
 
 			public boolean evaluate(Date target) {
 
-				return target != null && target.compareTo(date) > ZERO;
+				return target.compareTo(date) > ZERO;
 			}
 
 		}).getJoint();
@@ -80,7 +80,7 @@ public class DateEvaluator extends ObjectEvaluator<Date> {
 
 			public boolean evaluate(Date target) {
 
-				return target != null && target.compareTo(date) >= ZERO;
+				return target.compareTo(date) >= ZERO;
 			}
 
 		}).getJoint();
@@ -99,7 +99,7 @@ public class DateEvaluator extends ObjectEvaluator<Date> {
 
 			public boolean evaluate(Date target) {
 
-				return target != null && target.compareTo(date) < ZERO;
+				return target.compareTo(date) < ZERO;
 			}
 
 		}).getJoint();
@@ -118,7 +118,7 @@ public class DateEvaluator extends ObjectEvaluator<Date> {
 
 			public boolean evaluate(Date target) {
 
-				return target != null && target.compareTo(date) <= ZERO;
+				return target.compareTo(date) <= ZERO;
 			}
 
 		}).getJoint();

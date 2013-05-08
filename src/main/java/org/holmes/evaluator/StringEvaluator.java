@@ -44,7 +44,7 @@ public class StringEvaluator extends ObjectEvaluator<String> {
 
 			public boolean evaluate(String target) {
 
-				return target != null && !target.trim().isEmpty();
+				return !target.trim().isEmpty();
 			}
 
 		}).getJoint();
@@ -59,13 +59,17 @@ public class StringEvaluator extends ObjectEvaluator<String> {
 	 */
 	public Joint matches(final Pattern pattern) {
 
+		if (pattern == null) {
+			throw new IllegalArgumentException("the pattern must be set.");
+		}
+
 		return setEvaluation(new Evaluation<String>() {
 
 			public boolean evaluate(String target) {
-				
-				return pattern != null && target != null && pattern.matcher(target).matches();
+
+				return pattern.matcher(target).matches();
 			}
-			
+
 		}).getJoint();
 	}
 }

@@ -16,16 +16,18 @@ public class DateEvaluatorTest {
 
 	private Date lastYear;
 
+	private Date nextYear;
+
 	@Before
 	public void defineLastYear() {
 
-		Calendar calendar = Calendar.getInstance();
-		calendar.setTime(new Date());
+		lastYear = addYearsFromNow(-1);
+	}
 
-		int currentYear = calendar.get(Calendar.YEAR);
-		calendar.set(Calendar.YEAR, currentYear - 1);
+	@Before
+	public void defineNextYear() {
 
-		lastYear = calendar.getTime();
+		nextYear = addYearsFromNow(1);
 	}
 
 	@Test
@@ -82,5 +84,244 @@ public class DateEvaluatorTest {
 		evaluator.applying(Diff.toNow().inMilliseconds()).isLessThan(
 				31536000000L);
 		assertFalse(evaluator.evaluate());
+
+		evaluator = new DateEvaluator(null);
+		evaluator.applying(Diff.toNow().inYears()).isLessThanOrEqualTo(1);
+		assertFalse(evaluator.evaluate());
+	}
+
+	@Test
+	public void testSuccessfulIsAfterThanEval() {
+
+		evaluator = new DateEvaluator(new Date());
+		evaluator.isAfterThan(lastYear);
+		assertTrue(evaluator.evaluate());
+	}
+
+	@Test
+	public void testUnsuccessfulIsAfterThanEval() {
+
+		evaluator = new DateEvaluator(lastYear);
+
+		evaluator.isAfterThan(new Date());
+		assertFalse(evaluator.evaluate());
+
+		evaluator.isAfterThan(lastYear);
+		assertFalse(evaluator.evaluate());
+
+		evaluator = new DateEvaluator(null);
+		evaluator.isAfterThan(lastYear);
+		assertFalse(evaluator.evaluate());
+	}
+
+	@Test
+	public void testSuccessfulIsAfterThanOrEqualTo() {
+
+		evaluator = new DateEvaluator(new Date());
+		evaluator.isAfterThanOrEqualTo(lastYear);
+		assertTrue(evaluator.evaluate());
+
+		evaluator = new DateEvaluator(lastYear);
+		evaluator.isAfterThanOrEqualTo(lastYear);
+		assertTrue(evaluator.evaluate());
+	}
+
+	@Test
+	public void testUnsuccessfulIsAfterThanOrEqualTo() {
+
+		evaluator = new DateEvaluator(lastYear);
+		evaluator.isAfterThanOrEqualTo(new Date());
+		assertFalse(evaluator.evaluate());
+
+		evaluator = new DateEvaluator(null);
+		evaluator.isAfterThanOrEqualTo(new Date());
+		assertFalse(evaluator.evaluate());
+	}
+
+	@Test
+	public void testSuccessfulIsBeforeThanEval() {
+
+		evaluator = new DateEvaluator(lastYear);
+		evaluator.isBeforeThan(new Date());
+		assertTrue(evaluator.evaluate());
+	}
+
+	@Test
+	public void testUnsuccessfulIsBeforeThanEval() {
+
+		evaluator = new DateEvaluator(new Date());
+		evaluator.isBeforeThan(lastYear);
+		assertFalse(evaluator.evaluate());
+
+		evaluator = new DateEvaluator(lastYear);
+		evaluator.isBeforeThan(lastYear);
+		assertFalse(evaluator.evaluate());
+
+		evaluator = new DateEvaluator(null);
+		evaluator.isBeforeThan(lastYear);
+		assertFalse(evaluator.evaluate());
+	}
+
+	@Test
+	public void testSuccessfulIsBeforeThanOrEqualTo() {
+
+		evaluator = new DateEvaluator(lastYear);
+		evaluator.isBeforeThanOrEqualTo(new Date());
+		assertTrue(evaluator.evaluate());
+
+		evaluator = new DateEvaluator(lastYear);
+		evaluator.isBeforeThanOrEqualTo(lastYear);
+		assertTrue(evaluator.evaluate());
+	}
+
+	@Test
+	public void testUnsuccessfulIsBeforeThanOrEqualTo() {
+
+		evaluator = new DateEvaluator(new Date());
+		evaluator.isBeforeThanOrEqualTo(lastYear);
+		assertFalse(evaluator.evaluate());
+
+		evaluator = new DateEvaluator(null);
+		evaluator.isBeforeThanOrEqualTo(lastYear);
+		assertFalse(evaluator.evaluate());
+	}
+
+	@Test
+	public void testSuccessfulBelongsToInterval() {
+
+		evaluator = new DateEvaluator(new Date());
+		evaluator.belongsToInterval(lastYear, nextYear);
+		assertTrue(evaluator.evaluate());
+
+		evaluator = new DateEvaluator(lastYear);
+		evaluator.belongsToInterval(lastYear, nextYear);
+		assertTrue(evaluator.evaluate());
+
+		evaluator = new DateEvaluator(nextYear);
+		evaluator.belongsToInterval(lastYear, nextYear);
+		assertTrue(evaluator.evaluate());
+	}
+
+	@Test
+	public void testUnsuccessfulBelongsToInterval() {
+
+		evaluator = new DateEvaluator(null);
+		evaluator.belongsToInterval(lastYear, nextYear);
+		assertFalse(evaluator.evaluate());
+
+		evaluator = new DateEvaluator(lastYear);
+		evaluator.belongsToInterval(new Date(), nextYear);
+		assertFalse(evaluator.evaluate());
+
+		evaluator = new DateEvaluator(nextYear);
+		evaluator.belongsToInterval(lastYear, new Date());
+		assertFalse(evaluator.evaluate());
+	}
+
+	@Test
+	public void testSuccessfulBelongsToLeftOpenInterval() {
+
+		evaluator = new DateEvaluator(new Date());
+		evaluator.belongsToLeftOpenInterval(lastYear, nextYear);
+		assertTrue(evaluator.evaluate());
+
+		evaluator = new DateEvaluator(nextYear);
+		evaluator.belongsToLeftOpenInterval(lastYear, nextYear);
+		assertTrue(evaluator.evaluate());
+	}
+
+	@Test
+	public void testUnsuccessfulBelongsToLeftOpenInterval() {
+
+		evaluator = new DateEvaluator(null);
+		evaluator.belongsToLeftOpenInterval(lastYear, nextYear);
+		assertFalse(evaluator.evaluate());
+
+		evaluator = new DateEvaluator(lastYear);
+		evaluator.belongsToLeftOpenInterval(new Date(), nextYear);
+		assertFalse(evaluator.evaluate());
+
+		evaluator = new DateEvaluator(nextYear);
+		evaluator.belongsToLeftOpenInterval(lastYear, new Date());
+		assertFalse(evaluator.evaluate());
+
+		evaluator = new DateEvaluator(lastYear);
+		evaluator.belongsToLeftOpenInterval(lastYear, nextYear);
+		assertFalse(evaluator.evaluate());
+	}
+
+	@Test
+	public void testSuccessfulBelongsToRightOpenInterval() {
+
+		evaluator = new DateEvaluator(new Date());
+		evaluator.belongsToRightOpenInterval(lastYear, nextYear);
+		assertTrue(evaluator.evaluate());
+
+		evaluator = new DateEvaluator(lastYear);
+		evaluator.belongsToRightOpenInterval(lastYear, nextYear);
+		assertTrue(evaluator.evaluate());
+	}
+
+	@Test
+	public void testUnsuccessfulBelongsToRightOpenInterval() {
+
+		evaluator = new DateEvaluator(null);
+		evaluator.belongsToRightOpenInterval(lastYear, nextYear);
+		assertFalse(evaluator.evaluate());
+
+		evaluator = new DateEvaluator(lastYear);
+		evaluator.belongsToRightOpenInterval(new Date(), nextYear);
+		assertFalse(evaluator.evaluate());
+
+		evaluator = new DateEvaluator(nextYear);
+		evaluator.belongsToRightOpenInterval(lastYear, new Date());
+		assertFalse(evaluator.evaluate());
+
+		evaluator = new DateEvaluator(nextYear);
+		evaluator.belongsToRightOpenInterval(lastYear, nextYear);
+		assertFalse(evaluator.evaluate());
+	}
+
+	@Test
+	public void testSuccessfulBelongsToOpenInterval() {
+
+		evaluator = new DateEvaluator(new Date());
+		evaluator.belongsToOpenInterval(lastYear, nextYear);
+		assertTrue(evaluator.evaluate());
+	}
+
+	@Test
+	public void testUnsuccessfulBelongsToOpenInterval() {
+
+		evaluator = new DateEvaluator(null);
+		evaluator.belongsToOpenInterval(lastYear, nextYear);
+		assertFalse(evaluator.evaluate());
+
+		evaluator = new DateEvaluator(lastYear);
+		evaluator.belongsToOpenInterval(new Date(), nextYear);
+		assertFalse(evaluator.evaluate());
+
+		evaluator = new DateEvaluator(nextYear);
+		evaluator.belongsToOpenInterval(lastYear, new Date());
+		assertFalse(evaluator.evaluate());
+
+		evaluator = new DateEvaluator(nextYear);
+		evaluator.belongsToOpenInterval(lastYear, nextYear);
+		assertFalse(evaluator.evaluate());
+
+		evaluator = new DateEvaluator(lastYear);
+		evaluator.belongsToOpenInterval(lastYear, nextYear);
+		assertFalse(evaluator.evaluate());
+	}
+
+	private Date addYearsFromNow(int amount) {
+
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTime(new Date());
+
+		int currentYear = calendar.get(Calendar.YEAR);
+		calendar.set(Calendar.YEAR, currentYear + amount);
+
+		return calendar.getTime();
 	}
 }
