@@ -18,7 +18,8 @@ public class CollectionEvaluatorTest {
 	@Test
 	public void testSuccessfulCardinalityEval() {
 
-		CollectionEvaluator<Integer> evaluator = new CollectionEvaluator<Integer>(Arrays.asList(1, 3, 5, 5, 3, 1));
+		CollectionEvaluator<Integer> evaluator = new CollectionEvaluator<Integer>(
+				Arrays.asList(1, 3, 5, 5, 3, 1));
 
 		evaluator.cardinalityOf(3).isEqualTo(2);
 		assertTrue(evaluator.evaluate());
@@ -33,7 +34,8 @@ public class CollectionEvaluatorTest {
 	@Test
 	public void testUnsuccessfulCardinalityEval() {
 
-		CollectionEvaluator<String> evaluator = new CollectionEvaluator<String>(Arrays.asList("one", "two"));
+		CollectionEvaluator<String> evaluator = new CollectionEvaluator<String>(
+				Arrays.asList("one", "two"));
 
 		evaluator.cardinalityOf("two").isEqualTo(2);
 		assertFalse(evaluator.evaluate());
@@ -47,12 +49,14 @@ public class CollectionEvaluatorTest {
 	@Test
 	public void testSuccessfulSizeEval() {
 
-		CollectionEvaluator<String> evaluator = new CollectionEvaluator<String>(Arrays.asList("a", "b", "c", "d"));
+		CollectionEvaluator<String> evaluator = new CollectionEvaluator<String>(
+				Arrays.asList("a", "b", "c", "d"));
 
 		evaluator.size().isEqualTo(4);
 		assertTrue(evaluator.evaluate());
 
-		evaluator = new CollectionEvaluator<String>(Collections.<String> emptyList());
+		evaluator = new CollectionEvaluator<String>(
+				Collections.<String> emptyList());
 
 		evaluator.size().isEqualTo(0);
 		assertTrue(evaluator.evaluate());
@@ -61,7 +65,8 @@ public class CollectionEvaluatorTest {
 	@Test
 	public void testUnsuccessfulSizeEval() {
 
-		CollectionEvaluator<String> evaluator = new CollectionEvaluator<String>(Arrays.asList("a", "b", "c", "d"));
+		CollectionEvaluator<String> evaluator = new CollectionEvaluator<String>(
+				Arrays.asList("a", "b", "c", "d"));
 
 		evaluator.size().isGreaterThan(4);
 		assertFalse(evaluator.evaluate());
@@ -74,7 +79,8 @@ public class CollectionEvaluatorTest {
 	@Test
 	public void testSuccessfulIsEmptyEval() {
 
-		CollectionEvaluator<String> evaluator = new CollectionEvaluator<String>(Collections.<String> emptyList());
+		CollectionEvaluator<String> evaluator = new CollectionEvaluator<String>(
+				Collections.<String> emptyList());
 
 		evaluator.isEmpty();
 		assertTrue(evaluator.evaluate());
@@ -87,7 +93,8 @@ public class CollectionEvaluatorTest {
 	@Test
 	public void testUnsuccessfulIsEmptyEval() {
 
-		CollectionEvaluator<String> evaluator = new CollectionEvaluator<String>(Arrays.asList("a", "b", "c", "d"));
+		CollectionEvaluator<String> evaluator = new CollectionEvaluator<String>(
+				Arrays.asList("a", "b", "c", "d"));
 
 		evaluator.isEmpty();
 		assertFalse(evaluator.evaluate());
@@ -96,7 +103,8 @@ public class CollectionEvaluatorTest {
 	@Test
 	public void testSuccessfulIsNotEmptyEval() {
 
-		CollectionEvaluator<String> evaluator = new CollectionEvaluator<String>(Arrays.asList("a", "b", "c", "d"));
+		CollectionEvaluator<String> evaluator = new CollectionEvaluator<String>(
+				Arrays.asList("a", "b", "c", "d"));
 
 		evaluator.isNotEmpty();
 		assertTrue(evaluator.evaluate());
@@ -105,7 +113,8 @@ public class CollectionEvaluatorTest {
 	@Test
 	public void testUnsuccessfulIsNotEmptyEval() {
 
-		CollectionEvaluator<String> evaluator = new CollectionEvaluator<String>(Collections.<String> emptyList());
+		CollectionEvaluator<String> evaluator = new CollectionEvaluator<String>(
+				Collections.<String> emptyList());
 
 		evaluator.isNotEmpty();
 		assertFalse(evaluator.evaluate());
@@ -118,7 +127,8 @@ public class CollectionEvaluatorTest {
 	@Test
 	public void testSuccessfulContainsEval() {
 
-		CollectionEvaluator<TypeA> evaluator = new CollectionEvaluator<TypeA>(getCollection());
+		CollectionEvaluator<TypeA> evaluator = new CollectionEvaluator<TypeA>(
+				getCollection());
 
 		evaluator.contains(new TypeA(8));
 		assertTrue(evaluator.evaluate());
@@ -127,7 +137,8 @@ public class CollectionEvaluatorTest {
 	@Test
 	public void testUnsuccessfulContainsEval() {
 
-		CollectionEvaluator<TypeA> evaluator = new CollectionEvaluator<TypeA>(getCollection());
+		CollectionEvaluator<TypeA> evaluator = new CollectionEvaluator<TypeA>(
+				getCollection());
 
 		evaluator.contains(new TypeA(18));
 		assertFalse(evaluator.evaluate());
@@ -140,7 +151,8 @@ public class CollectionEvaluatorTest {
 	@Test
 	public void testSuccessfulDoesNotContainEval() {
 
-		CollectionEvaluator<TypeA> evaluator = new CollectionEvaluator<TypeA>(getCollection());
+		CollectionEvaluator<TypeA> evaluator = new CollectionEvaluator<TypeA>(
+				getCollection());
 
 		evaluator.doesNotContain(new TypeA(18));
 		assertTrue(evaluator.evaluate());
@@ -149,7 +161,8 @@ public class CollectionEvaluatorTest {
 	@Test
 	public void testUnsuccessfulDoesNotContainEval() {
 
-		CollectionEvaluator<TypeA> evaluator = new CollectionEvaluator<TypeA>(getCollection());
+		CollectionEvaluator<TypeA> evaluator = new CollectionEvaluator<TypeA>(
+				getCollection());
 
 		evaluator.doesNotContain(new TypeA(2));
 		assertFalse(evaluator.evaluate());
@@ -165,7 +178,8 @@ public class CollectionEvaluatorTest {
 		Collection<TypeA> col = getCollection();
 		col.add(new TypeA(34));
 
-		CollectionEvaluator<TypeA> evaluator = new CollectionEvaluator<TypeA>(col);
+		CollectionEvaluator<TypeA> evaluator = new CollectionEvaluator<TypeA>(
+				col);
 
 		evaluator.containsAll(getCollection());
 		assertTrue(evaluator.evaluate());
@@ -180,7 +194,8 @@ public class CollectionEvaluatorTest {
 	@Test
 	public void testUnsuccessfulContainsAllEval() {
 
-		CollectionEvaluator<TypeA> evaluator = new CollectionEvaluator<TypeA>(getCollection());
+		CollectionEvaluator<TypeA> evaluator = new CollectionEvaluator<TypeA>(
+				getCollection());
 
 		Collection<TypeA> col = getCollection();
 		col.add(new TypeA(34));
@@ -195,7 +210,8 @@ public class CollectionEvaluatorTest {
 	@Test
 	public void testSuccessfulContainsAnyEval() {
 
-		CollectionEvaluator<TypeA> evaluator = new CollectionEvaluator<TypeA>(getCollection());
+		CollectionEvaluator<TypeA> evaluator = new CollectionEvaluator<TypeA>(
+				getCollection());
 
 		evaluator.containsAny(getCollection());
 		assertTrue(evaluator.evaluate());
@@ -212,7 +228,8 @@ public class CollectionEvaluatorTest {
 	@Test
 	public void testUnsuccessfulContainsAnyEval() {
 
-		CollectionEvaluator<TypeA> evaluator = new CollectionEvaluator<TypeA>(getCollection());
+		CollectionEvaluator<TypeA> evaluator = new CollectionEvaluator<TypeA>(
+				getCollection());
 
 		evaluator.containsAny(getCollection());
 		assertTrue(evaluator.evaluate());
@@ -234,11 +251,11 @@ public class CollectionEvaluatorTest {
 	@Test
 	public void testSuccessfulHasAllValidByEval() {
 
-		CollectionEvaluator<TypeA> evaluator = new CollectionEvaluator<TypeA>(getCollection());
+		CollectionEvaluator<TypeA> evaluator = new CollectionEvaluator<TypeA>(
+				getCollection());
 
 		evaluator.hasAllValidBy(new Validator<TypeA>() {
 
-			@Override
 			public boolean isValid(TypeA target) {
 
 				return target != null && target.getId() < 100;
@@ -250,18 +267,18 @@ public class CollectionEvaluatorTest {
 	@Test
 	public void testUnsuccessfulHasAllValidByEval() {
 
-		CollectionEvaluator<TypeA> evaluator = new CollectionEvaluator<TypeA>(getCollection());
+		CollectionEvaluator<TypeA> evaluator = new CollectionEvaluator<TypeA>(
+				getCollection());
 
 		evaluator.hasAllValidBy(new Validator<TypeA>() {
 
-			@Override
 			public boolean isValid(TypeA target) {
 
 				return target != null && target.getId() > 10;
 			}
 		});
 		assertFalse(evaluator.evaluate());
-		
+
 		evaluator.hasAllValidBy(null);
 		assertFalse(evaluator.evaluate());
 	}
