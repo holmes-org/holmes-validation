@@ -64,11 +64,7 @@ public class StringEvaluator extends ObjectEvaluator<String> {
 
 			public boolean evaluate(String target) {
 
-<<<<<<< HEAD
-				return pattern != null && target != null && pattern.matcher(target).matches();
-=======
 				return pattern.matcher(target).matches();
->>>>>>> date-evaluator
 			}
 
 		}).getJoint();

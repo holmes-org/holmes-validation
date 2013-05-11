@@ -15,12 +15,8 @@ public final class Interval<T extends Comparable<T>> {
 
 	private final boolean rightOpen;
 
-<<<<<<< HEAD
-	private Interval(T leftBoundary, T rightBoundary, boolean leftOpen, boolean rightOpen) {
-=======
 	private Interval(T leftBoundary, T rightBoundary, boolean leftOpen,
 			boolean rightOpen) {
->>>>>>> date-evaluator
 
 		this.leftBoundary = leftBoundary;
 		this.rightBoundary = rightBoundary;

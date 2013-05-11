@@ -209,7 +209,6 @@ public class CollectionEvaluator<E> extends ObjectEvaluator<Collection<E>> {
 
 		return setEvaluation(new Evaluation<Collection<E>>() {
 
-			@Override
 			public boolean evaluate(Collection<E> target) {
 
 				if (target == null || validator == null) {
@@ -234,7 +233,8 @@ public class CollectionEvaluator<E> extends ObjectEvaluator<Collection<E>> {
 
 		for (E e : collection) {
 
-			if ((element == null && e == null) || (element != null && element.equals(e))) {
+			if ((element == null && e == null)
+					|| (element != null && element.equals(e))) {
 				cardinality++;
 			}
 		}
