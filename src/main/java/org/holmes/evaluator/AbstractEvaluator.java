@@ -42,6 +42,10 @@ abstract class AbstractEvaluator<T> implements Evaluator<T> {
 
 	public boolean evaluate() {
 
-		return evaluation.evaluate(target);
+		try {
+			return evaluation.evaluate(target);
+		} catch (NullPointerException e) {
+			return false;
+		}
 	}
 }

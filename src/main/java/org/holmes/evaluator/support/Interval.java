@@ -15,7 +15,12 @@ public final class Interval<T extends Comparable<T>> {
 
 	private final boolean rightOpen;
 
+<<<<<<< HEAD
 	private Interval(T leftBoundary, T rightBoundary, boolean leftOpen, boolean rightOpen) {
+=======
+	private Interval(T leftBoundary, T rightBoundary, boolean leftOpen,
+			boolean rightOpen) {
+>>>>>>> date-evaluator
 
 		this.leftBoundary = leftBoundary;
 		this.rightBoundary = rightBoundary;
@@ -30,7 +35,8 @@ public final class Interval<T extends Comparable<T>> {
 	 * @param rightBoundary
 	 * @return
 	 */
-	public static <T extends Comparable<T>> Interval<T> closedInterval(T leftBoundary, T rightBoundary) {
+	public static <T extends Comparable<T>> Interval<T> closedInterval(
+			T leftBoundary, T rightBoundary) {
 
 		return new Interval<T>(leftBoundary, rightBoundary, false, false);
 	}
@@ -42,7 +48,8 @@ public final class Interval<T extends Comparable<T>> {
 	 * @param rightBoundary
 	 * @return
 	 */
-	public static <T extends Comparable<T>> Interval<T> leftOpenInterval(T leftBoundary, T rightBoundary) {
+	public static <T extends Comparable<T>> Interval<T> leftOpenInterval(
+			T leftBoundary, T rightBoundary) {
 
 		return new Interval<T>(leftBoundary, rightBoundary, true, false);
 	}
@@ -54,7 +61,8 @@ public final class Interval<T extends Comparable<T>> {
 	 * @param rightBoundary
 	 * @return
 	 */
-	public static <T extends Comparable<T>> Interval<T> rightOpenInterval(T leftBoundary, T rightBoundary) {
+	public static <T extends Comparable<T>> Interval<T> rightOpenInterval(
+			T leftBoundary, T rightBoundary) {
 
 		return new Interval<T>(leftBoundary, rightBoundary, false, true);
 	}
@@ -66,7 +74,8 @@ public final class Interval<T extends Comparable<T>> {
 	 * @param rightBoundary
 	 * @return
 	 */
-	public static <T extends Comparable<T>> Interval<T> openInterval(T leftBoundary, T rightBoundary) {
+	public static <T extends Comparable<T>> Interval<T> openInterval(
+			T leftBoundary, T rightBoundary) {
 
 		return new Interval<T>(leftBoundary, rightBoundary, true, true);
 	}
@@ -79,7 +88,17 @@ public final class Interval<T extends Comparable<T>> {
 	 */
 	public boolean contains(T element) {
 
-		return element != null && analyzeLeftBoundary(element) && analyzeRightBoundary(element);
+		selfCheck();
+		return analyzeLeftBoundary(element) && analyzeRightBoundary(element);
+	}
+
+	private void selfCheck() {
+
+		if (leftBoundary == null && rightBoundary == null) {
+
+			throw new IllegalArgumentException(
+					"both leftBoundary and rightBoundary must been set.");
+		}
 	}
 
 	private boolean analyzeLeftBoundary(T element) {

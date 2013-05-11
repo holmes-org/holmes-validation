@@ -80,7 +80,7 @@ public class NumberEvaluator extends ObjectEvaluator<Number> {
 
 			public boolean evaluate(Number target) {
 
-				return target != null && toBigDecimal(target).compareTo(toBigDecimal(number)) > ZERO;
+				return toBigDecimal(target).compareTo(toBigDecimal(number)) > ZERO;
 			}
 
 		}).getJoint();
@@ -100,7 +100,7 @@ public class NumberEvaluator extends ObjectEvaluator<Number> {
 
 			public boolean evaluate(Number target) {
 
-				return target != null && toBigDecimal(target).compareTo(toBigDecimal(number)) >= ZERO;
+				return toBigDecimal(target).compareTo(toBigDecimal(number)) >= ZERO;
 			}
 
 		}).getJoint();
@@ -119,7 +119,7 @@ public class NumberEvaluator extends ObjectEvaluator<Number> {
 
 			public boolean evaluate(Number target) {
 
-				return target != null && toBigDecimal(target).compareTo(toBigDecimal(number)) < ZERO;
+				return toBigDecimal(target).compareTo(toBigDecimal(number)) < ZERO;
 			}
 
 		}).getJoint();
@@ -139,7 +139,7 @@ public class NumberEvaluator extends ObjectEvaluator<Number> {
 
 			public boolean evaluate(Number target) {
 
-				return target != null && toBigDecimal(target).compareTo(toBigDecimal(number)) <= ZERO;
+				return toBigDecimal(target).compareTo(toBigDecimal(number)) <= ZERO;
 			}
 
 		}).getJoint();
@@ -157,7 +157,7 @@ public class NumberEvaluator extends ObjectEvaluator<Number> {
 
 			public boolean evaluate(Number target) {
 
-				return target != null && toBigDecimal(target).signum() == ONE;
+				return toBigDecimal(target).signum() == ONE;
 			}
 
 		}).getJoint();
@@ -175,7 +175,7 @@ public class NumberEvaluator extends ObjectEvaluator<Number> {
 
 			public boolean evaluate(Number target) {
 
-				return target != null && toBigDecimal(target).signum() == MINUS_ONE;
+				return toBigDecimal(target).signum() == MINUS_ONE;
 			}
 
 		}).getJoint();
@@ -192,7 +192,7 @@ public class NumberEvaluator extends ObjectEvaluator<Number> {
 
 			public boolean evaluate(Number target) {
 
-				return target != null && toBigDecimal(target).signum() <= ZERO;
+				return toBigDecimal(target).signum() <= ZERO;
 			}
 
 		}).getJoint();
@@ -209,7 +209,7 @@ public class NumberEvaluator extends ObjectEvaluator<Number> {
 
 			public boolean evaluate(Number target) {
 
-				return target != null && toBigDecimal(target).signum() >= ZERO;
+				return toBigDecimal(target).signum() >= ZERO;
 			}
 
 		}).getJoint();
@@ -227,7 +227,7 @@ public class NumberEvaluator extends ObjectEvaluator<Number> {
 
 			public boolean evaluate(Number target) {
 
-				return target != null && !isMultiple(toBigInteger(target), BIG_INT_TWO);
+				return !isMultiple(toBigInteger(target), BIG_INT_TWO);
 			}
 
 		}).getJoint();
@@ -245,7 +245,7 @@ public class NumberEvaluator extends ObjectEvaluator<Number> {
 
 			public boolean evaluate(Number target) {
 
-				return target != null && isMultiple(toBigInteger(target), BIG_INT_TWO);
+				return isMultiple(toBigInteger(target), BIG_INT_TWO);
 			}
 
 		}).getJoint();
@@ -263,7 +263,7 @@ public class NumberEvaluator extends ObjectEvaluator<Number> {
 
 			public boolean evaluate(Number target) {
 
-				return target != null && isMultiple(toBigInteger(target), toBigInteger(number));
+				return isMultiple(toBigInteger(target), toBigInteger(number));
 			}
 
 		}).getJoint();
@@ -279,13 +279,15 @@ public class NumberEvaluator extends ObjectEvaluator<Number> {
 	 *            the right boundary, inclusive.
 	 * @return an instance of {@link Joint} class
 	 */
-	public Joint belongsToInterval(final Number leftBoundary, final Number rightBoundary) {
+	public Joint belongsToInterval(final Number leftBoundary,
+			final Number rightBoundary) {
 
 		return setEvaluation(new Evaluation<Number>() {
 
 			public boolean evaluate(Number target) {
 
-				return Interval.closedInterval(toBigDecimal(leftBoundary), toBigDecimal(rightBoundary)).contains(
+				return Interval.closedInterval(toBigDecimal(leftBoundary),
+						toBigDecimal(rightBoundary)).contains(
 						toBigDecimal(target));
 			}
 
@@ -302,13 +304,15 @@ public class NumberEvaluator extends ObjectEvaluator<Number> {
 	 *            the right boundary, inclusive.
 	 * @return an instance of {@link Joint} class
 	 */
-	public Joint belongsToLeftOpenInterval(final Number leftBoundary, final Number rightBoundary) {
+	public Joint belongsToLeftOpenInterval(final Number leftBoundary,
+			final Number rightBoundary) {
 
 		return setEvaluation(new Evaluation<Number>() {
 
 			public boolean evaluate(Number target) {
 
-				return Interval.leftOpenInterval(toBigDecimal(leftBoundary), toBigDecimal(rightBoundary)).contains(
+				return Interval.leftOpenInterval(toBigDecimal(leftBoundary),
+						toBigDecimal(rightBoundary)).contains(
 						toBigDecimal(target));
 			}
 
@@ -325,13 +329,15 @@ public class NumberEvaluator extends ObjectEvaluator<Number> {
 	 *            the right boundary, exclusive.
 	 * @return an instance of {@link Joint} class
 	 */
-	public Joint belongsToRightOpenInterval(final Number leftBoundary, final Number rightBoundary) {
+	public Joint belongsToRightOpenInterval(final Number leftBoundary,
+			final Number rightBoundary) {
 
 		return setEvaluation(new Evaluation<Number>() {
 
 			public boolean evaluate(Number target) {
 
-				return Interval.rightOpenInterval(toBigDecimal(leftBoundary), toBigDecimal(rightBoundary)).contains(
+				return Interval.rightOpenInterval(toBigDecimal(leftBoundary),
+						toBigDecimal(rightBoundary)).contains(
 						toBigDecimal(target));
 			}
 
@@ -348,13 +354,15 @@ public class NumberEvaluator extends ObjectEvaluator<Number> {
 	 *            the right boundary, exclusive.
 	 * @return an instance of {@link Joint} class
 	 */
-	public Joint belongsToOpenInterval(final Number leftBoundary, final Number rightBoundary) {
+	public Joint belongsToOpenInterval(final Number leftBoundary,
+			final Number rightBoundary) {
 
 		return setEvaluation(new Evaluation<Number>() {
 
 			public boolean evaluate(Number target) {
 
-				return Interval.openInterval(toBigDecimal(leftBoundary), toBigDecimal(rightBoundary)).contains(
+				return Interval.openInterval(toBigDecimal(leftBoundary),
+						toBigDecimal(rightBoundary)).contains(
 						toBigDecimal(target));
 			}
 
@@ -363,7 +371,8 @@ public class NumberEvaluator extends ObjectEvaluator<Number> {
 
 	private boolean isMultiple(BigInteger multiple, BigInteger multipleOf) {
 
-		return multipleOf.intValue() != ZERO && multiple.remainder(multipleOf).intValue() == ZERO;
+		return multipleOf.intValue() != ZERO
+				&& multiple.remainder(multipleOf).intValue() == ZERO;
 	}
 
 	private BigDecimal toBigDecimal(Number number) {
@@ -372,7 +381,14 @@ public class NumberEvaluator extends ObjectEvaluator<Number> {
 			return (BigDecimal) number;
 		}
 
-		return number != null ? new BigDecimal(number.toString()) : null;
+		try {
+
+			return number != null ? new BigDecimal(number.toString()) : null;
+
+		} catch (NumberFormatException e) {
+
+			return null;
+		}
 	}
 
 	private BigInteger toBigInteger(Number number) {
