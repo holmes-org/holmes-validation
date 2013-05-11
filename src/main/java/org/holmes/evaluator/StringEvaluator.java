@@ -59,10 +59,6 @@ public class StringEvaluator extends ObjectEvaluator<String> {
 	 */
 	public Joint matches(final Pattern pattern) {
 
-		if (pattern == null) {
-			throw new IllegalArgumentException("the pattern must be set.");
-		}
-
 		return setEvaluation(new Evaluation<String>() {
 
 			public boolean evaluate(String target) {

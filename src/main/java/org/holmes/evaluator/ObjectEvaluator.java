@@ -63,7 +63,7 @@ public class ObjectEvaluator<T> extends AbstractEvaluator<T> {
 
 			public boolean evaluate(T target) {
 
-				return target != null && target.equals(other);
+				return target.equals(other);
 			}
 
 		}).getJoint();
@@ -82,7 +82,7 @@ public class ObjectEvaluator<T> extends AbstractEvaluator<T> {
 
 			public boolean evaluate(T target) {
 
-				return target != null && !target.equals(other);
+				return !target.equals(other);
 			}
 
 		}).getJoint();
