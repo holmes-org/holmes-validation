@@ -6,11 +6,11 @@ import org.holmes.exception.RuleViolationException;
 import org.holmes.exception.ValidationException;
 
 /**
- * A {@link ResultCollector} related to the LAZY {@link OperationMode}.
+ * A {@link ResultCollector} related to the GREEDY {@link OperationMode}.
  * 
  * @author diegossilveira
  */
-public class LazyResultCollector implements ResultCollector {
+public class GreedyResultCollector implements ResultCollector {
 
 	public void onRuleViolation(RuleViolationException e, ValidationResult result) throws ValidationException {
 

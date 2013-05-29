@@ -33,13 +33,13 @@ public class HolmesEngine {
 	}
 
 	/**
-	 * Initializes the engine with LAZY {@link OperationMode}.
+	 * Initializes the engine with GREEDY {@link OperationMode}.
 	 * 
 	 * @return initialized engine instance.
 	 */
 	public static HolmesEngine init() {
 
-		return new HolmesEngine(OperationMode.LAZY.getResultCollector());
+		return new HolmesEngine(OperationMode.GREEDY.getResultCollector());
 	}
 
 	/**

@@ -1,7 +1,7 @@
 package org.holmes;
 
 import org.holmes.collector.EagerResultCollector;
-import org.holmes.collector.LazyResultCollector;
+import org.holmes.collector.GreedyResultCollector;
 import org.holmes.collector.ResultCollector;
 import org.holmes.collector.SilentResultCollector;
 
@@ -13,15 +13,15 @@ import org.holmes.collector.SilentResultCollector;
 public enum OperationMode {
 
 	/**
-	 * In LAZY mode, HolmesEngine will evaluate all rules, collecting the
+	 * In GREEDY mode, HolmesEngine will evaluate all rules, collecting the
 	 * violations, before throwing an exception.
 	 */
-	LAZY {
+	GREEDY {
 
 		@Override
 		public ResultCollector getResultCollector() {
 
-			return new LazyResultCollector();
+			return new GreedyResultCollector();
 		}
 	},
 
