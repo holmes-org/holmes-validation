@@ -16,6 +16,13 @@ public class HolmesEngineTest {
 		Date birthDate = c.getTime();
 
 		e.ensureThat(birthDate).applying(Diff.toNow().inYears()).isGreaterThanOrEqualTo(110).otherwise("age.violation");
+		e.ensureThat(new byte[0]).isValidBy(new Validator<byte[]>() {
+
+			@Override
+			public boolean isValid(byte[] target) {
+				return true;
+			}
+		}).otherwise("byte.violation");
 
 		e.run();
 	}

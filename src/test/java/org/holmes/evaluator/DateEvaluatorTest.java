@@ -53,8 +53,7 @@ public class DateEvaluatorTest {
 		evaluator.applying(Diff.toNow().inSeconds()).isGreaterThan(31535000);
 		assertTrue(evaluator.evaluate());
 
-		evaluator.applying(Diff.toNow().inMilliseconds()).isGreaterThan(
-				31535000000L);
+		evaluator.applying(Diff.toNow().inMilliseconds()).isGreaterThan(31535000000L);
 		assertTrue(evaluator.evaluate());
 	}
 
@@ -81,8 +80,7 @@ public class DateEvaluatorTest {
 		evaluator.applying(Diff.toNow().inSeconds()).isLessThan(31536000);
 		assertFalse(evaluator.evaluate());
 
-		evaluator.applying(Diff.toNow().inMilliseconds()).isLessThan(
-				31536000000L);
+		evaluator.applying(Diff.toNow().inMilliseconds()).isLessThan(31536000000L);
 		assertFalse(evaluator.evaluate());
 
 		evaluator = new DateEvaluator(null);
@@ -91,9 +89,46 @@ public class DateEvaluatorTest {
 	}
 
 	@Test
+	public void testSuccessfulIsPastEval() {
+
+		evaluator = new DateEvaluator(lastYear);
+		
+		evaluator.isPast();
+		assertTrue(evaluator.evaluate());
+	}
+
+	@Test
+	public void testUnsuccessfulIsPastEval() {
+
+		evaluator = new DateEvaluator(nextYear);
+
+		evaluator.isPast();
+		assertFalse(evaluator.evaluate());
+	}
+
+	@Test
+	public void testSuccessfulIsFutureEval() {
+
+		evaluator = new DateEvaluator(nextYear);
+		
+		evaluator.isFuture();
+		assertTrue(evaluator.evaluate());
+	}
+
+	@Test
+	public void testUnsuccessfulIsFutureEval() {
+
+		evaluator = new DateEvaluator(lastYear);
+
+		evaluator.isFuture();
+		assertFalse(evaluator.evaluate());
+	}
+
+	@Test
 	public void testSuccessfulIsAfterThanEval() {
 
 		evaluator = new DateEvaluator(new Date());
+		
 		evaluator.isAfterThan(lastYear);
 		assertTrue(evaluator.evaluate());
 	}

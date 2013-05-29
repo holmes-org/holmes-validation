@@ -3,8 +3,8 @@
 
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>org.holmes</groupId>
-	<artifactId>holmes</artifactId>
+	<groupId>org.holmes-validation</groupId>
+	<artifactId>holmes-validation</artifactId>
 	<version>1.0-SNAPSHOT</version>
 	<packaging>jar</packaging>
 

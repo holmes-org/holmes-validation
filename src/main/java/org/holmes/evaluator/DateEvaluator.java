@@ -49,6 +49,26 @@ public class DateEvaluator extends ObjectEvaluator<Date> {
 	}
 
 	/**
+	 * Ensures that the target is a date in the past.
+	 * 
+	 * @return an instance of {@link Joint} class
+	 */
+	public Joint isPast() {
+
+		return isBeforeThan(new Date());
+	}
+
+	/**
+	 * Ensures that the target is a date in the future.
+	 * 
+	 * @return an instance of {@link Joint} class
+	 */
+	public Joint isFuture() {
+
+		return isAfterThan(new Date());
+	}
+
+	/**
 	 * Ensures that the target is after than the argument date.
 	 * 
 	 * @param date
@@ -134,15 +154,13 @@ public class DateEvaluator extends ObjectEvaluator<Date> {
 	 *            the right boundary, inclusive.
 	 * @return an instance of {@link Joint} class
 	 */
-	public Joint belongsToInterval(final Date leftBoundary,
-			final Date rightBoundary) {
+	public Joint belongsToInterval(final Date leftBoundary, final Date rightBoundary) {
 
 		return setEvaluation(new Evaluation<Date>() {
 
 			public boolean evaluate(Date target) {
 
-				return Interval.closedInterval(leftBoundary, rightBoundary)
-						.contains(target);
+				return Interval.closedInterval(leftBoundary, rightBoundary).contains(target);
 			}
 
 		}).getJoint();
@@ -158,15 +176,13 @@ public class DateEvaluator extends ObjectEvaluator<Date> {
 	 *            the right boundary, inclusive.
 	 * @return an instance of {@link Joint} class
 	 */
-	public Joint belongsToLeftOpenInterval(final Date leftBoundary,
-			final Date rightBoundary) {
+	public Joint belongsToLeftOpenInterval(final Date leftBoundary, final Date rightBoundary) {
 
 		return setEvaluation(new Evaluation<Date>() {
 
 			public boolean evaluate(Date target) {
 
-				return Interval.leftOpenInterval(leftBoundary, rightBoundary)
-						.contains(target);
+				return Interval.leftOpenInterval(leftBoundary, rightBoundary).contains(target);
 			}
 
 		}).getJoint();
@@ -182,15 +198,13 @@ public class DateEvaluator extends ObjectEvaluator<Date> {
 	 *            the right boundary, exclusive.
 	 * @return an instance of {@link Joint} class
 	 */
-	public Joint belongsToRightOpenInterval(final Date leftBoundary,
-			final Date rightBoundary) {
+	public Joint belongsToRightOpenInterval(final Date leftBoundary, final Date rightBoundary) {
 
 		return setEvaluation(new Evaluation<Date>() {
 
 			public boolean evaluate(Date target) {
 
-				return Interval.rightOpenInterval(leftBoundary, rightBoundary)
-						.contains(target);
+				return Interval.rightOpenInterval(leftBoundary, rightBoundary).contains(target);
 			}
 
 		}).getJoint();
@@ -206,15 +220,13 @@ public class DateEvaluator extends ObjectEvaluator<Date> {
 	 *            the right boundary, exclusive.
 	 * @return an instance of {@link Joint} class
 	 */
-	public Joint belongsToOpenInterval(final Date leftBoundary,
-			final Date rightBoundary) {
+	public Joint belongsToOpenInterval(final Date leftBoundary, final Date rightBoundary) {
 
 		return setEvaluation(new Evaluation<Date>() {
 
 			public boolean evaluate(Date target) {
 
-				return Interval.openInterval(leftBoundary, rightBoundary)
-						.contains(target);
+				return Interval.openInterval(leftBoundary, rightBoundary).contains(target);
 			}
 
 		}).getJoint();
