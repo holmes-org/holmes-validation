@@ -73,7 +73,6 @@ public class StringEvaluator extends ObjectEvaluator<String> {
 	/**
 	 * Gets the {@link String} length.
 	 * 
-	 * @param string
 	 * @return {@link NumberEvaluator}
 	 */
 	public NumberEvaluator length() {

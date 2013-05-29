@@ -5,7 +5,7 @@ import org.holmes.exception.RuleViolationException;
 import org.holmes.exception.ValidationException;
 
 /**
- * ResultCollectors are notified whenever a {@link Rule} evaluation fails.
+ * ResultCollectors are notified whenever a rule evaluation fails.
  * 
  * @author diegossilveira
  */

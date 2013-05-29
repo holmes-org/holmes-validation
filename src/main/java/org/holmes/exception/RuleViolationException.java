@@ -1,7 +1,7 @@
 package org.holmes.exception;
 
 /**
- * Class that represents a {@link Rule} violation.
+ * Class that represents a rule violation.
  * 
  * @author diegossilveira
  */

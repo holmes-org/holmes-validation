@@ -1,8 +1,8 @@
 package org.holmes;
 
 /**
- * An evaluator is the last piece in the validation chain. To evaluate a target
- * instance by some specific logic is it's responsability.
+ * An evaluator is the last piece in the validation chain. Evaluating a target
+ * instance by some specific logic is it's responsibility.
  * 
  * @author diegossilveira
  * 

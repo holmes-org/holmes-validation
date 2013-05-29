@@ -58,7 +58,7 @@ public class HolmesEngine {
 	 * Initializes the engine with the given {@link ResultCollector}.
 	 * 
 	 * @param collector
-	 * @return
+	 * @return initialized engine instance.
 	 */
 	public static HolmesEngine init(ResultCollector collector) {
 
@@ -140,13 +140,13 @@ public class HolmesEngine {
 	/**
 	 * Runs all evaluation rules on the context.
 	 * 
-	 * @return
+	 * @return the result of the validation process.
 	 * @throws ValidationException
 	 */
 	public ValidationResult run() throws ValidationException {
 
 		ValidationResult result = ValidationResult.init();
-		
+
 		for (Rule rule : rules) {
 			evaluateRule(rule, result);
 		}
