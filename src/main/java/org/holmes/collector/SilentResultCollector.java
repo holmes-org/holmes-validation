@@ -1,6 +1,7 @@
 package org.holmes.collector;
 
 import org.holmes.OperationMode;
+import org.holmes.ResultCollector;
 import org.holmes.ValidationResult;
 import org.holmes.exception.RuleViolationException;
 import org.holmes.exception.ValidationException;

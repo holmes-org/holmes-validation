@@ -1,6 +1,5 @@
-package org.holmes.collector;
+package org.holmes;
 
-import org.holmes.ValidationResult;
 import org.holmes.exception.RuleViolationException;
 import org.holmes.exception.ValidationException;
 

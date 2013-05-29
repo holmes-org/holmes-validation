@@ -2,7 +2,6 @@ package org.holmes;
 
 import org.holmes.collector.EagerResultCollector;
 import org.holmes.collector.GreedyResultCollector;
-import org.holmes.collector.ResultCollector;
 import org.holmes.collector.SilentResultCollector;
 
 /**

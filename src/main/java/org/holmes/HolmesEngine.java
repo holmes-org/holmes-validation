@@ -5,7 +5,6 @@ import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
-import org.holmes.collector.ResultCollector;
 import org.holmes.evaluator.BooleanEvaluator;
 import org.holmes.evaluator.CollectionEvaluator;
 import org.holmes.evaluator.DateEvaluator;
