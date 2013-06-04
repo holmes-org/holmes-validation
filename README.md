@@ -16,6 +16,10 @@ if(user.getAge() <= 18) {
 if(user.getName() == null || user.getName().isEmpty()) {
     throw new MyException("so you're the no-name user, uhn?");
 }
+
+if(DateUtils.calculateDiffInYears(user.getGraduationDate(), new Date()) < 5) {
+	throw new MyException("you must be graduated for at least 5 years");
+}
 ```
 
 This code pattern is repetitive among your methods, besides being very procedural.
@@ -25,6 +29,7 @@ And that's where **holmes-validation** can help you, providing validation-code t
 * is object-oriented friendly;
 * is more readable and maintainable;
 * sounds closer to the natural language;
+* is dinamycally adaptable to the target data-type; 
 
 Here is a simple code (with new lines added for better readability) written with **holmes-validation** API:
 
@@ -38,6 +43,11 @@ e.ensureThat(user.getAge())
 e.ensureThat(user.getName())
                  .isNotEmpty()
                  .otherwise("so you're the no-name user, uhn?");
+
+e.ensureThat(user.getGraduationDate())
+                 .applying(Diff.toNow().inYears())
+                 .isGreaterThanOrEqualTo(5)
+                 .otherwise("you must be graduated for at least 5 years");
 
 e.run();
 ```
