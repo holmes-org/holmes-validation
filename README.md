@@ -26,14 +26,18 @@ And that's where **holmes-validation** can help you, providing validation-code t
 * more readable and maintainable;
 * sounds closer to the natural language;
 
-Here is a simple code written with **holmes-validation** API:
+Here is a simple code (with new lines added for better readability) written with **holmes-validation** API:
 
 ```java
 HolmesEngine e = HolmesEngine.init();
 
-e.ensureThat(user.getAge()).isGreaterThan(18).otherwise("your parents won't like you visiting this page");
+e.ensureThat(user.getAge())
+                 .isGreaterThan(18)
+                 .otherwise("your parents won't like you visiting this page");
 
-e.ensureThat(user.getName()).isNotEmpty().otherwise("so you're the no-name user, uhn?");
+e.ensureThat(user.getName())
+                 .isNotEmpty()
+                 .otherwise("so you're the no-name user, uhn?");
 
 e.run();
 ```
