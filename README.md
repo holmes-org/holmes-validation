@@ -32,7 +32,7 @@ Here is a simple code (with new lines added for better readability) written with
 HolmesEngine e = HolmesEngine.init();
 
 e.ensureThat(user.getAge())
-                 .isGreaterThan(18)
+                 .isGreaterThanOrEqualTo(18)
                  .otherwise("your parents won't like you visiting this page");
 
 e.ensureThat(user.getName())
