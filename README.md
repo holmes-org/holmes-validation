@@ -26,7 +26,6 @@ if(DateUtils.calculateDiffInYears(user.getGraduationDate(), new Date()) < 5) {
 if(!errors.isEmpty()) {
 	throw new MyException(errors);
 }
-
 ```
 
 This code pattern is repetitive among your methods, besides being very procedural.
