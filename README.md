@@ -20,10 +20,10 @@ if(user.getName() == null || user.getName().isEmpty()) {
 
 This code pattern is repetitive among your methods, besides being very procedural.
 
-And that's where **holmes-validation** can help you, providing validation-code that is:
+And that's where **holmes-validation** can help you, providing validation-code that:
 
-* object-oriented friendly;
-* more readable and maintainable;
+* is object-oriented friendly;
+* is more readable and maintainable;
 * sounds closer to the natural language;
 
 Here is a simple code (with new lines added for better readability) written with **holmes-validation** API:
