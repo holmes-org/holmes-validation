@@ -55,7 +55,7 @@ e.ensureThat(user.getGraduationDate())
                  .isGreaterThanOrEqualTo(5)
                  .otherwise("you must be graduated for at least 5 years");
 
-e.run();
+e.run(); // will throw a ValidationException or return a ValidationResult object, depending on the OperationMode.
 ```
 
 ## Getting started
