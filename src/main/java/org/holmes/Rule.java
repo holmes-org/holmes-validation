@@ -19,7 +19,6 @@ class Rule {
 	private Rule(Statement statement) {
 
 		this.statement = statement;
-		this.violationDescriptor = this.toString();
 	}
 
 	/**
@@ -72,6 +71,17 @@ class Rule {
 	void setViolationDescriptor(String violationDescriptor) {
 
 		this.violationDescriptor = violationDescriptor;
+	}
+
+	/**
+	 * Checks if a violation descriptor is set.
+	 * 
+	 * @return <code>true</code> if there's a violation descriptor set for this
+	 *         rule, <code>false</code> otherwise.
+	 */
+	boolean hasViolationDescriptor() {
+
+		return violationDescriptor != null && !violationDescriptor.isEmpty();
 	}
 
 	/**

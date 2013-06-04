@@ -25,6 +25,8 @@ public class HolmesEngine {
 
 	private final ResultCollector collector;
 
+	private String defaultViolationDescriptor;
+
 	private HolmesEngine(ResultCollector collector) {
 
 		rules = new ArrayList<Rule>();
@@ -32,7 +34,7 @@ public class HolmesEngine {
 	}
 
 	/**
-	 * Initializes the engine with GREEDY {@link OperationMode}.
+	 * Initializes the engine with GREEDY {@link Op2erationMode}.
 	 * 
 	 * @return initialized engine instance.
 	 */
@@ -154,6 +156,19 @@ public class HolmesEngine {
 		return result;
 	}
 
+	/**
+	 * Specifies a default violation descriptor used to represent violations to
+	 * rules which do not specify its own descriptor.
+	 * 
+	 * @param defaultViolationDescriptor
+	 *            the violation descriptor.
+	 */
+	public HolmesEngine withDefaultDescriptor(String defaultViolationDescriptor) {
+
+		this.defaultViolationDescriptor = defaultViolationDescriptor;
+		return this;
+	}
+
 	private <E extends Evaluator<?>> E configure(E evaluator) {
 
 		Rule rule = Rule.simpleFor(evaluator);
@@ -167,6 +182,10 @@ public class HolmesEngine {
 
 		try {
 
+			if(!rule.hasViolationDescriptor()) {
+				rule.setViolationDescriptor(defaultViolationDescriptor);
+			}
+			
 			rule.evaluate();
 
 		} catch (RuleViolationException e) {

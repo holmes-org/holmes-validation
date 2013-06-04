@@ -1,8 +1,8 @@
 package org.holmes.exception;
 
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Class that represents a validation case exception.
@@ -13,16 +13,22 @@ public class ValidationException extends RuntimeException {
 
 	private static final long serialVersionUID = 3422556211439163240L;
 
-	private final List<String> violationsDescriptors;
+	private final Set<String> violationsDescriptors;
 
 	public ValidationException(Collection<String> violationsDescriptors) {
 
-		this.violationsDescriptors = new ArrayList<String>(violationsDescriptors);
+		this.violationsDescriptors = new HashSet<String>(violationsDescriptors);
 	}
 
-	public List<String> getViolationsDescriptors() {
+	public Set<String> getViolationsDescriptors() {
 
 		return violationsDescriptors;
+	}
+	
+	@Override
+	public String getMessage() {
+		
+		return this.toString();
 	}
 
 	@Override

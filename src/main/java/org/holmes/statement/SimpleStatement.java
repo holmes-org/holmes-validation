@@ -18,6 +18,7 @@ public class SimpleStatement implements Statement {
 		this.evaluator = evaluator;
 	}
 
+	@Override
 	public boolean evaluate() {
 
 		return evaluator.evaluate();

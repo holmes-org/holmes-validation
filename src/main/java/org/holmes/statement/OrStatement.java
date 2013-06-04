@@ -21,6 +21,7 @@ public class OrStatement implements Statement {
 		this.secondStatement = secondStatement;
 	}
 
+	@Override
 	public boolean evaluate() {
 
 		return firstStatement.evaluate() || secondStatement.evaluate();

@@ -29,6 +29,7 @@ abstract class AbstractEvaluator<T> implements Evaluator<T> {
 		return joint;
 	}
 
+	@Override
 	public void setJoint(Joint joint) {
 
 		this.joint = joint;
@@ -40,6 +41,7 @@ abstract class AbstractEvaluator<T> implements Evaluator<T> {
 		return this;
 	}
 
+	@Override
 	public boolean evaluate() {
 
 		try {

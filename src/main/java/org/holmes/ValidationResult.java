@@ -1,8 +1,8 @@
 package org.holmes;
 
-import java.util.ArrayList;
 import java.util.Collections;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Class that holds the result of a validation.
@@ -11,11 +11,11 @@ import java.util.List;
  */
 public class ValidationResult {
 
-	private final List<String> violationsDescriptors;
+	private final Set<String> violationsDescriptors;
 
 	private ValidationResult() {
 
-		violationsDescriptors = new ArrayList<String>();
+		violationsDescriptors = new HashSet<String>();
 	}
 	
 	static ValidationResult init() {
@@ -35,9 +35,9 @@ public class ValidationResult {
 		return !violationsDescriptors.isEmpty();
 	}
 
-	public List<String> getViolationsDescriptors() {
+	public Set<String> getViolationsDescriptors() {
 
-		return Collections.unmodifiableList(violationsDescriptors);
+		return Collections.unmodifiableSet(violationsDescriptors);
 	}
 	
 	@Override
