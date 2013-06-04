@@ -9,17 +9,24 @@
 We all know that writing validations it's really boring, right? Maybe it's not boring for you, but checking if the user filled *correctly* all the required parameters / fields, almost always leads to codes like this:
 
 ```java
+List<String> errors = ...;
+
 if(user.getAge() <= 18) {
-    throw new MyException("your parents won't like you visiting this page");
+    errors.add("your parents won't like you visiting this page");
 }
 
 if(user.getName() == null || user.getName().isEmpty()) {
-    throw new MyException("so you're the no-name user, uhn?");
+    errors.add("so you're the no-name user, uhn?");
 }
 
 if(DateUtils.calculateDiffInYears(user.getGraduationDate(), new Date()) < 5) {
-	throw new MyException("you must be graduated for at least 5 years");
+	errors.add("you must be graduated for at least 5 years");
 }
+
+if(!errors.isEmpty()) {
+	throw new MyException(errors);
+}
+
 ```
 
 This code pattern is repetitive among your methods, besides being very procedural.
