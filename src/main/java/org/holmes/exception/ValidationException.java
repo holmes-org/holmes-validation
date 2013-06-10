@@ -1,7 +1,8 @@
 package org.holmes.exception;
 
 import java.util.Collection;
-import java.util.HashSet;
+import java.util.Collections;
+import java.util.LinkedHashSet;
 import java.util.Set;
 
 /**
@@ -17,12 +18,12 @@ public class ValidationException extends RuntimeException {
 
 	public ValidationException(Collection<String> violationsDescriptors) {
 
-		this.violationsDescriptors = new HashSet<String>(violationsDescriptors);
+		this.violationsDescriptors = new LinkedHashSet<String>(violationsDescriptors);
 	}
 
 	public Set<String> getViolationsDescriptors() {
 
-		return violationsDescriptors;
+		return Collections.unmodifiableSet(violationsDescriptors);
 	}
 	
 	@Override

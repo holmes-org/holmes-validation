@@ -1,7 +1,7 @@
 package org.holmes;
 
 import java.util.Collections;
-import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.Set;
 
 /**
@@ -15,7 +15,7 @@ public class ValidationResult {
 
 	private ValidationResult() {
 
-		violationsDescriptors = new HashSet<String>();
+		violationsDescriptors = new LinkedHashSet<String>();
 	}
 	
 	static ValidationResult init() {
