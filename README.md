@@ -58,9 +58,9 @@ e.ensureThat(user.getGraduationDate())
 e.run(); // will throw a ValidationException or return a ValidationResult object, depending on the OperationMode.
 ```
 
-## Getting started
+## Getting Started
 
-Looking for more code samples? Have a look at the [Getting started](https://github.com/holmes-org/holmes-validation) page.
+Looking for more code samples? Have a look at the [Getting Started Guide](https://github.com/holmes-org/holmes-validation/wiki/Getting-Started-Guide).
 
 ## Maven
 
