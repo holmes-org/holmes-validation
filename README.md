@@ -69,5 +69,5 @@ Using [Apache Maven](http://maven.apache.org/)? Add holmes-validation dependency
     <dependency>
     	<groupId>org.holmes-validation</groupId>
     	<artifactId>holmes-validation</artifactId>
-    	<version>1.0</version>
+    	<version>1.1</version>
     </dependency>
