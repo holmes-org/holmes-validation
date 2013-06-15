@@ -1,0 +1,7 @@
+Version 1.1 - June 15, 2013
+
+* [BUGFIX] Fixing a bug that prevented the violation messages to be iterated over in the same order they were added to the Engine. {Diego Silveira}
+
+Version 1.0 - June 03, 2013
+
+* [FEATURE] Initial release. - {Diego Silveira, Arthur Almeida}
