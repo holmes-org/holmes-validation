@@ -13,6 +13,7 @@ import org.holmes.evaluator.ObjectEvaluator;
 import org.holmes.evaluator.StringEvaluator;
 import org.holmes.exception.RuleViolationException;
 import org.holmes.exception.ValidationException;
+import org.holmes.resolver.SimpleMessageResolver;
 
 /**
  * The main class of the framework.
@@ -24,12 +25,15 @@ public class HolmesEngine {
 	private final List<Rule> rules;
 
 	private final ResultCollector collector;
+	
+	private MessageResolver messageResolver;
 
 	private String defaultViolationDescriptor;
 
 	private HolmesEngine(ResultCollector collector) {
 
 		rules = new ArrayList<Rule>();
+		this.messageResolver = new SimpleMessageResolver();
 		this.collector = collector;
 	}
 
@@ -146,7 +150,7 @@ public class HolmesEngine {
 	 */
 	public ValidationResult run() throws ValidationException {
 
-		ValidationResult result = ValidationResult.init();
+		ValidationResult result = ValidationResult.init(messageResolver);
 
 		for (Rule rule : rules) {
 			evaluateRule(rule, result);
@@ -166,6 +170,18 @@ public class HolmesEngine {
 	public HolmesEngine withDefaultDescriptor(String defaultViolationDescriptor) {
 
 		this.defaultViolationDescriptor = defaultViolationDescriptor;
+		return this;
+	}
+	
+	/**
+	 * Specifies an instance of {@link MessageResolver} used to process violation descriptors.
+	 * 
+	 * @param messageResolver
+	 *            an instance of {@link MessageResolver}.
+	 */
+	public HolmesEngine withMessageResolver(MessageResolver messageResolver) {
+		
+		this.messageResolver = messageResolver;
 		return this;
 	}
 

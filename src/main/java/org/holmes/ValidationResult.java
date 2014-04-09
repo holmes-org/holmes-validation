@@ -12,21 +12,24 @@ import java.util.Set;
 public class ValidationResult {
 
 	private final Set<String> violationsDescriptors;
+	
+	private final MessageResolver messageResolver;
 
-	private ValidationResult() {
+	private ValidationResult(MessageResolver messageResolver) {
 
 		violationsDescriptors = new LinkedHashSet<String>();
+		this.messageResolver = messageResolver;
 	}
 	
-	static ValidationResult init() {
+	static ValidationResult init(MessageResolver messageResolver) {
 		
-		return new ValidationResult();
+		return new ValidationResult(messageResolver);
 	}
 
 	public void addViolationDescriptor(String violationDescriptor) {
 
 		if (violationDescriptor != null) {
-			violationsDescriptors.add(violationDescriptor);
+			violationsDescriptors.add(messageResolver.resolveMessage(violationDescriptor));
 		}
 	}
 
