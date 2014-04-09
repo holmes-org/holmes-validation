@@ -26,10 +26,10 @@ public class ValidationResult {
 		return new ValidationResult(messageResolver);
 	}
 
-	public void addViolationDescriptor(String violationDescriptor) {
+	public void addViolationDescriptor(String violationDescriptor, Object... arguments) {
 
 		if (violationDescriptor != null) {
-			violationsDescriptors.add(messageResolver.resolveMessage(violationDescriptor));
+			violationsDescriptors.add(messageResolver.resolveMessage(violationDescriptor, arguments));
 		}
 	}
 

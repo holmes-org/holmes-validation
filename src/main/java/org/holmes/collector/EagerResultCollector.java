@@ -15,7 +15,7 @@ public class EagerResultCollector implements ResultCollector {
 
 	public void onRuleViolation(RuleViolationException e, ValidationResult result) throws ValidationException {
 		
-		result.addViolationDescriptor(e.getViolationDescriptor());
+		result.addViolationDescriptor(e.getViolationDescriptor(), e.getViolationDescriptorArguments());
 		throw new ValidationException(result.getViolationsDescriptors());
 	}
 

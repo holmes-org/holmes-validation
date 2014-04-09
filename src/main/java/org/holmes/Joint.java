@@ -12,8 +12,8 @@ import org.holmes.evaluator.StringEvaluator;
 import org.holmes.statement.SimpleStatement;
 
 /**
- * This class provides a way to chain {@link Evaluator} instances within a same
- * {@link Rule}, through a suitable instance of {@link Statement}.
+ * This class provides a way to chain {@link Evaluator} instances within a same {@link Rule}, through a suitable instance of
+ * {@link Statement}.
  * 
  * @author diegossilveira
  */
@@ -27,15 +27,16 @@ public class Joint {
 	}
 
 	/**
-	 * Finalizes an {@link Rule}, specifying a descriptor used to represent a
-	 * violation to the {@link Rule}.
+	 * Finalizes an {@link Rule}, specifying a descriptor used to represent a violation to the {@link Rule}.
 	 * 
 	 * @param violationDescriptor
 	 *            the violation descriptor.
+	 * @param arguments
+	 *            optional arguments that can be used to describe the violation.
 	 */
-	public void otherwise(String violationDescriptor) {
+	public void otherwise(String violationDescriptor, Object... arguments) {
 
-		rule.setViolationDescriptor(violationDescriptor);
+		rule.setViolationDescriptor(violationDescriptor, arguments);
 	}
 
 	/**

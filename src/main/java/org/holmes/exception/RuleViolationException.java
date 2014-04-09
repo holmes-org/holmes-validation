@@ -9,13 +9,21 @@ public class RuleViolationException extends RuntimeException {
 
 	private static final long serialVersionUID = -6285497347762856549L;
 
-	public RuleViolationException(String violationDescriptor) {
+	private final Object[] violationDescriptorArguments;
+
+	public RuleViolationException(String violationDescriptor, Object... violationDescriptorArguments) {
 
 		super(violationDescriptor);
+		this.violationDescriptorArguments = violationDescriptorArguments;
 	}
 
 	public String getViolationDescriptor() {
 
 		return getMessage();
+	}
+
+	public Object[] getViolationDescriptorArguments() {
+
+		return violationDescriptorArguments;
 	}
 }

@@ -15,7 +15,7 @@ public class SilentResultCollector implements ResultCollector {
 
 	public void onRuleViolation(RuleViolationException e, ValidationResult result) throws ValidationException {
 
-		result.addViolationDescriptor(e.getViolationDescriptor());
+		result.addViolationDescriptor(e.getViolationDescriptor(), e.getViolationDescriptorArguments());
 	}
 
 	public void finish(ValidationResult result) throws ValidationException {
