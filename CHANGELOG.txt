@@ -3,7 +3,7 @@ Version 1.2 - On the way!
 * [FEATURE] Adding support to violation descriptors with arguments - {Diego Silveira, thanks Jerry Gonçalves}
 * [FEATURE] Adding MessageResolver interface and some implementation classes to provide some violation descriptor processing. - {Diego Silveira, thanks Jerry Gonçalves}
 * [TODO] Preventing null pointer exceptions when evaluating a field or method of some complex object, e.g. ensureThat(obj.getField()).isPositive(), given that 'obj' is null;
-* [TODO] Providing a factory that can globally hold the developer's preferences, making it easier to configure the framework behavior.  
+* [FEATURE] Providing a factory that can globally hold the developer's preferences, making it easier to configure the framework behavior.  
 
 Version 1.1 - June 15, 2013
 
