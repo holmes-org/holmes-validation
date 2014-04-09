@@ -209,4 +209,18 @@ public class HolmesEngine {
 			collector.onRuleViolation(e, result);
 		}
 	}
+	
+	// these methods are used by unit tests.
+	
+	ResultCollector getCollector() {
+		return collector;
+	}
+	
+	MessageResolver getMessageResolver() {
+		return messageResolver;
+	}
+	
+	String getDefaultViolationDescriptor() {
+		return defaultViolationDescriptor;
+	}
 }
